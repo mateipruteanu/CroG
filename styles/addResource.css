@@ -86,10 +86,12 @@ label {
     margin-bottom: 10px;
 }
 
-input[type=text], input[type=email], input[type=password] {
+input[type=text] {
 	padding: 5px;
 	border-radius: 5px;
 	border: 1px solid #ccc;
+    width:60vw;;
+    margin:5px;
 }
 
 input[type=submit] {
@@ -100,6 +102,7 @@ input[type=submit] {
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
+    width:60vw;
 }
 
 input[type=submit]:hover {
