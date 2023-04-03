@@ -9,6 +9,10 @@ span:focus
     outline: none;
 }
 
+input:focus {
+  outline:none;
+}
+
 .mainDiv {
   display: flex;
   flex-direction: column;
@@ -113,4 +117,8 @@ span:focus
   background-size: 30px 30px;
   background-repeat: no-repeat;
   box-shadow: 7px 10px #2d3142c1;
+}
+
+.isHidden {
+  display: none;
 }
