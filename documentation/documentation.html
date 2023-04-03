@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>CroG-Software Requirements</title>
+    </head>
+
+    <body>
+        <article>
+            <header>
+                <h1>CroG-Creative Coding Resource Generator</h1>
+            </header>
+
+            <div role="contentinfo">
+                <h2>Members</h2>
+                <ul>
+                    <li>Dinu Darius-Dragos</li>
+                    <li>Pruteanu Matei</li>
+                    <li>Birladeanu Rares</li>
+                </ul>
+            </div>
+            
+            <section>
+                <h2>Table of Contents</h2>
+                <ol>
+                    <a href="#introduction"><li>Introduction</li></a>
+                        <ol>
+                            <a href="#purpose"><li>Purpose</li></a>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#overall">Overall Description</a>
+                        <ol>
+                            <a href="#product_perspective"><li>Product Perspective</li></a>
+                            <a href="#product_functions"><li>Product Functions</li></a>
+                            <a href="#user_classes"><li>User Classes and Characteristics</li></a>
+                            <a href="#operating_env"><li>Operating Environment</li></a>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#external_interface_requirements">External Interface Requirements</a>
+                        <ol>
+                            <a href="#user_interface"><li>User Interfaces</li></a>
+                            <a href="#hardware_interface"><li>Hardware Interfaces</li></a>
+                            <a href="#software_interface"><li>Software Interfaces</li></a>
+                            <a href="#communications_interface"><li>Communications Interfaces</li></a>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#system_features">System Features</a>
+                        <ol>
+                            <a href="#keyword_feature"><li>Keyword Matching & Filtering</li></a>
+                            <a href="#resource_feature"><li>Adding resources</li></a>
+                            <a href="#profile_feature"><li>Profile Info Update</li></a>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#other">Other Aspects</a>
+                        <ol>
+                            <a href="#data_sources"><li>Data Sources</li></a>
+                            <a href="#wireframing"><li>Wireframing tool(Figma)</li></a>
+                            <a href="#comm_vcs"><li>Communication & Version Control</li></a>
+                        </ol>
+                    </li>
+                </ol>
+            </section>
+
+            <section>
+                <h2 id="introduction">1.Introduction</h2>
+                <section>
+                    <h3 id ="purpose">1.1 Purpose</h3>
+                    <p>The purpose of this web application is to allow users to acces a plethora of different resources regarding "Creative Coding". "Creative Coding" focuses on form rather than function and allows programmers to access their creative side. The app will act similarly to a search engine or a collection of multiple links to different resources from the web.
+                    </p>
+                </section>
+            </section>
+
+            <section>
+                <h2 id="overall">2. Overall Description</h2>
+                <section>
+                    <h3 id="product_perspective">2.1 Product Perspective</h3>
+                    <p>CroG is a self-contained product, represented by a web application with an extensive user interface.</p>
+                </section>
+                <section>
+                    <h3 id="product_functions">2.2 Product Functions</h3>
+                    <p>The application will allow its users to mainly access 2 big functionalities:</p>
+                    <ul>
+                        <li>Accessing/searching for different resources about Creative Coding(articles, books, repositories, tutorials, etc.)</li>
+                        <li>Add new resources related to Creative Coding</li>
+                    </ul>
+                    <p>Besides these 2 main functions, the users will be able to access their own account, modify their personal data and save certain resources to their profile for ease of access.</p>
+                </section>
+                <section>
+                    <h3 id="user_classes">2.3 User Classes and Characteristics</h3>
+                    <p>As far as user types are concerned, the application limits users by the login/signup protocol. We have 2 main categories of users: the ones with an account and the ones without an account. </p>
+                    <p>A user without an account, who might be accessing the platform only once or rarely, may not want to create an account and only want to quickly reach the information they need.</p>
+                    <p>On the other hand, users who choose to create an account and frequently access the platform will have the possibility to also add new resources to the database, therefore contributing to the creative coding space.</p>
+                </section>
+                <section>
+                    <h3 id="operating_env">2.4 Operating Environment</h3>
+                    <p>This web application only requires a browser to work as intended. Because it is a web app, it is OS independent and does not require powerful hardware to work properly.</p>
+                </section>
+            </section>
+
+            <section>
+                <h2 id="external_interface_requirements">3. External Interface Requirements</h2>
+                <section>
+                    <h3 id="user_interface">3.1 User Interface</h3>
+                    <p>TBD.....</p>
+                </section>
+                <section>
+                    <h3 id="hardware_interface">3.2 Hardware Interface</h3>
+                    <p>When it comes to interaction between the different functionalities of the project, they will be managed by the Nodejs server and will be represented by sending/receiving different data such as login information, search terms, filters, user data, etc. When it comes to saving resources, we will use JSON files for better structuring our database.</p>
+                </section>
+                <section>
+                    <h3 id="software_interface">3.3 Software Interface</h3>
+                    <p>In order to build the project we decided to integrate different tools and libraries as well as combining different languages to create the features we need. To list some of the tehnologies used:</p>
+                    <ul>
+                        <li><em>Node.js</em>-building the backend server of the app.</li>
+                        <li><em>HTML+CSS</em>-building the frontend of the app.</li>
+                        <li><em>JavaScript</em>-for integrating and passing data between the components of the app.</li>
+                        <li><em>MySQL</em>-for managing the database(subjected to change in the future, if needed).</li>
+                    </ul>
+                    <p>In terms of other sofware components used to develop and use our application, we just need a web browser that has developer tools integrated. The app is OS independent.</p>
+                </section>
+                <section>
+                    <h3 id="communications_interface">3.4 Communications Interface</h3>
+                    <p>In order to ensure a proper communication, the application must be run in a browser and must have access to the network. The application has to be connected to the database in order to consistently return the corresponding resources that are searched. Also, in order to ensure user safety the password will be encrypted when being sent to the backend for checking validity. Because the application is built using Node.js, it is mandatory that the backend and frontend will communicate using asynchronous functions. Also, the HTTP protocol will facilitate the communication whitin the app.</p>
+                </section>
+            </section>
+
+            <section>
+                <h2 id="system_features">4. System Features</h2>
+                <section>
+                    <h3 id="keyword_feature">4.1 Keyword Matching & Filtering</h3>
+                    <p><em>Priority:</em> High</p>
+                    <p><em>Stimulus/Response Sequences:</em> Input at the search bar in the main page from users.</p>
+                    <p><em>Functional Requirements:</em> Connection to the database.</p>
+                    <p>One of the main features of our project is the Search option. Similar to a search engine, the user can input what he wants to search and the input will be parsed and separated into tokens. These tokens will then be matched with a series of keywords available in our database in order to return a search result catered to the user's needs. For example, if the user search input is "Websites in Java", the input will be broken down into 3 tokens and the first token, "Websites" will be a match with certain resources tagged with the same keyword.</p>
+                    <p>Besides the keyword matching, we can narrow the search results even more by using filters. The search results page will have a side menu with filters that can be applied to the current query. For example, the user might filter by the preffered programming language(Java, Python, C/C++) or by the type of resource available(Book, article, repository, video tutorial) or even by difficulty, author, etc.</p>
+                </section>
+                <section>
+                    <h3 id="resource_feature">4.2 Adding Resources</h3>
+                    <p><em>Priority:</em> High</p>
+                    <p><em>Stimulus/Response Sequences:</em>After a succesful login attempt, the user may press the Add button in order to add a new resource on the platform.</p>
+                    <p><em>Functional Requirements:</em>Connection to the database + valid login.</p>
+                    <p>One other important functionality that must be present on the platform is the possibility of adding new resources. This functionality is ensured by using a dedicated page where the user will be prompted with a form where he can input the name, a short description, an address and a list of "tags" for the resource that he/she wishes to add to the actual database.</p>
+                    <p>This option will only be available for logged in users, as it can be quite sensitive because it creates modifications in the database of the project.</p>
+                </section>
+                <section>
+                    <h3 id="profile_feature">4.3 Profile Info Update</h3>
+                    <p><em>Priority:</em> Low</p>
+                    <p><em>Stimulus/Response Sequences:</em> After successfully logging in, the user can access his/her profile by clicking the user icon.</p>
+                    <p><em>Functional Requirements:</em> Connection to the database + valid login.</p>
+                    <p>The user will be redirected to a page where he can view/edit personal data and manage a list of saved/starred resources that can be accessed quicker.</p>        
+                </section>
+            </section>
+
+            <section>
+                <h2 id="other">5. Other Aspects</h2>
+                <section>
+                    <h3 id="data_sources">5.1 Data Sources</h3>
+                    <p>The resources available at CroG are taken from the Creative Coding repository on GitHub. The repository can be found <a href="https://github.com/terkelg/awesome-creative-coding">here</a>.</p>
+                </section>
+                <section>
+                    <h3 id="wireframing">5.2 Wireframing tool</h3>
+                    <p>We wanted to have a clear representation of what our application wanted to look like. So, starting from hand drawn sketches, we used a wireframing tool in order to create the interface of our application as close to its implemented form as possible. To achieve this, we used Figma, a powerful tool which allowed us to quickly recreate the aspect that we've envisioned. Our Figma project is available at the following link.</p>
+                </section>
+                <section>
+                    <h3 id="comm_vcs">5.3 Communication & Version Control Software</h3>
+                    <p>Our communication was ensured asynchronously by Discord and for a better project management we chose to work on a GitHub repository. The link to our GitHub repository can be found <a href="https://github.com/Darius1509/CroG">here</a>.</p>
+                </section>
+            </section>
+        </article>
+    </body>
+</html>
