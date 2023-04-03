@@ -3,13 +3,13 @@ const fs = require("fs");
 
 const server = http.createServer((req, res) => {
   if (req.url === "/") {
-    res.writeHead(302, { Location: "/about.html" });
+    res.writeHead(302, { Location: "/pages/index.html" });
     res.end();
-  } else if (req.url === "/about.html") {
-    fs.readFile("./about.html", (err, data) => {
+  } else if (req.url === "/pages/index.html") {
+    fs.readFile("./pages/index.html", (err, data) => {
       if (err) {
         res.writeHead(500);
-        res.end("Error loading about.html");
+        res.end("Error loading index.html");
       } else {
         res.writeHead(200, { "Content-Type": "text/html" });
         res.end(data);
