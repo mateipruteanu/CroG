@@ -1,7 +1,6 @@
 body {
 font-family: 'Roboto', sans-serif;
-  background: rgb(45,253,149);
-  background: linear-gradient(15deg, rgba(45,253,149,1) 0%, rgba(88,255,229,1) 49%, rgba(34,137,195,1) 100%);
+  background: linear-gradient(to top, #B0C4DE 0%, #90EE90 100%);
 }
 
 span:focus
