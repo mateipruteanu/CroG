@@ -10,12 +10,14 @@ function validate(){
         return false;
     }
     else if (password != repeat_password){
+        
         alert ("Passwords do not match");
         return false;
     }
     else{
-        alert ("Sign up successfully");
-        window.location = "index.html"; // Redirecting to other page.
-        return false;
+        // redirect to pages/index.html 
+        window.location.href = "index.html";
+        return true;
+
     }
 }
