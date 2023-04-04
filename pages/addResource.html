@@ -6,38 +6,40 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CroG</title>
         <link rel="stylesheet" href="/styles/addResource.css">
+        <link rel="stylesheet" href="/styles/style.css">
         <script src="/scripts/addResource.js" defer></script>
     </head>
 
     <body>
-        <div class="mainDiv">
-
-            <div class="topBar">
-              <h1 class="title">CroG</h1>
-              
-              <div class="searchBarDiv">
-                <form class="searchBarForm">
-                  <span contenteditable="true" id="searchInput" placeholder="Search something..."></span>
-                </form>
-              </div>
+      <div class="topBar">
+        <h1 class="title"
+        onclick="window.location.href='/pages/index.html'">
+        CroG</h1>
         
-              <form class="topButtons">
-                <button class="topButton" type="submit" formaction="/pages/login.html">Login</button>
-                <button class="topButton" type="submit" formaction="/pages/signup.html">Sign Up</button>
-              </form>
-            </div>
+        <div class="searchBarDiv">
+          <form class="searchBarForm">
+            <input type="search" id="searchInput" placeholder="Search something..."></span>
+          </form>
+        </div>
+  
+        <form class="topButtons">
+          <button class="topButton" type="submit" formaction="/pages/login.html">Login</button>
+          <button class="topButton" type="submit" formaction="/pages/signup.html">Sign Up</button>
+        </form>
+      </div>
 
+        <div class="mainDiv">
             <div class="contentDiv">
                 <div class="addResourceDiv">
                     <h1>Add a resource</h1>
                     <form class="addResourceForm">
-                        <input type="text" id="resourceName" placeholder="Resource name">
-                        <input type="text" id="resourceDescription" placeholder="Resource description">
-                        <input type="text" id="resourceTags" placeholder="Resource tags">
-                        <input type="text" id="resourceCategory" placeholder="Resource category">
-                        <input type="text" id="resourceSubcategory" placeholder="Resource subcategory">
-                        <input type="text" id="resourceLanguage" placeholder="Resource language">
-                        <input type="submit" value="Add">
+                        <input class="formRow" type="text" id="resourceName" placeholder="Resource name">
+                        <input class="formRow" type="text" id="resourceDescription" placeholder="Resource description">
+                        <input class="formRow" type="text" id="resourceTags" placeholder="Resource tags">
+                        <input class="formRow" type="text" id="resourceCategory" placeholder="Resource category">
+                        <input class="formRow" type="text" id="resourceLink" placeholder="Resource link">
+                        <input class="formRow" type="text" id="resourceLanguage" placeholder="Resource language">
+                        <input  class="topButton" type="submit" value="Add">
                     </form>
             </div>
         </div>
