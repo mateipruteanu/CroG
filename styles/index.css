@@ -1,23 +1,5 @@
 /* Path: styles/index.css */
 
-
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-    outline: none;
-}
-
-span:focus
-{
-    outline: none;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  background: linear-gradient(to top, #B0C4DE 0%, #90EE90 100%);
-}
-
 .mainDiv {
   display: flex;
   flex-direction: column;
@@ -28,18 +10,6 @@ body {
 .topButtons {  
   align-self: flex-end;
   display: flex;
-}
-
-.topButton {
-  background-color: #EBFFF3;
-  color: #2d3142c1;
-  font-size: 25px;
-  padding: 14px 20px;
-  margin: 5px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 6px 6px;
 }
 
 .searchBarDiv { /* the div containing the search form with the button and input*/
@@ -53,35 +23,71 @@ body {
 }
 
 .title {
-  font-size: 150px;
-  font-weight: 200;
+  transition: .5s;
+  font-size: 250px;
   margin: 0px;
   margin-bottom: 10px;
-  font-family: 'Roboto', sans-serif;
-  color: #2d3142;
+  color: #e9c46a;
+  text-shadow: 1px 1px #e76f51,
+                2px 2px #e76f51,
+                3px 3px #e76f51,
+                4px 4px #e76f51,
+                5px 5px #e76f51,
+                6px 6px #e76f51,
+                7px 7px #e76f51,
+                8px 8px #e76f51,
+                9px 9px #e76f51,
+                10px 10px #e76f51,
+                11px 11px #e76f51;
 }
 
-.searchBarForm {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
+.title:hover {
+  transform: translate(-5px, -5px);
+  text-shadow: 1px 1px #e76f51,
+                2px 2px #e76f51,
+                3px 3px #e76f51,
+                4px 4px #e76f51,
+                5px 5px #e76f51,
+                6px 6px #e76f51,
+                7px 7px #e76f51,
+                8px 8px #e76f51,
+                9px 9px #e76f51,
+                10px 10px #e76f51,
+                11px 11px #e76f51,
+                12px 12px #e76f51,
+                13px 13px #e76f51,
+                14px 14px #e76f51,
+                15px 15px #e76f51,
+                16px 16px #e76f51,
+                17px 17px #e76f51,
+                18px 18px #e76f51,
+                19px 19px #e76f51,
+                20px 20px #e76f51,
+                21px 21px #e76f51,
+                22px 22px #e76f51,
+                23px 23px #e76f51,
+                24px 24px #e76f51;
+
 }
 
 #searchInput {
   width: 60vw;
   height: 60px;
-  border: 0px;
-  border-radius: 5px;
-  background-color: #EBFFF3;
   padding: 10px;
   padding-left: 60px;
-  box-sizing: border-box;
   font-size: 16px;
-  background-image: url("/resources/search-icon.svg");
   background-position: 15px 15px;
   background-size: 30px 30px;
-  background-repeat: no-repeat;
-  box-shadow: 7px 10px #2d3142c1;
+  box-shadow: 1px 1px #e76f51,
+              2px 2px #e76f51,
+              3px 3px #e76f51,
+              4px 4px #e76f51,
+              5px 5px #e76f51,
+              6px 6px #e76f51,
+              7px 7px #e76f51,
+              8px 8px #e76f51,
+              9px 9px #e76f51,
+              10px 10px #e76f51,
+              11px 11px #e76f51;
 }
 

@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CroG</title>
-  <link rel="stylesheet" href="/styles/index.css">
-  <script src="/scripts/index.js" defer></script>
-</head>
-<body>
-  <div class="mainDiv">
-
-    <form class="topButtons">
-      <button class="topButton" type="submit" formaction="/pages/login.html">Login</button>
-      <button class="topButton" type="submit" formaction="/pages/signup.html">Sign Up</button>
-    </form>
-  
-    <div class="searchBarDiv">
-      <h1 class="title">CroG</h1>
-      <form class="searchBarForm">
-        <!-- <input id="searchInput" type="search" placeholder="Search something..."> -->
-        <!-- <br> -->
-        <span contenteditable="true" id="searchInput" placeholder="Search something..."></span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CroG</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="/styles/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nabla"
+      rel="stylesheet"
+    />
+    <script src="/scripts/index.js" defer></script>
+  </head>
+  <body>
+    <div class="mainDiv">
+      <form class="topButtons">
+        <button class="topButton" type="submit" formaction="/pages/login.html">
+          Login
+        </button>
+        <button class="topButton" type="submit" formaction="/pages/signup.html">
+          Sign Up
+        </button>
       </form>
+
+      <div class="searchBarDiv">
+        <h1 class="title">CroG</h1>
+
+          <input
+            id="searchInput"
+            class="form-input"
+            type="search"
+            placeholder="Search something..."
+          />
+      </div>
     </div>
-
-  </div>
-
-</body>
+  </body>
 </html>

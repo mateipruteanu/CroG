@@ -6,12 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Search</title>
   <script src="/scripts/search.js" defer></script>
+  <link rel="stylesheet" href="/styles/style.css">
   <link rel="stylesheet" href="/styles/search.css">
 </head>
 <body>
   <div class="mainDiv">
     <div class="topBar">
-      <h1 class="title">CroG</h1>
+      <h1 class="title"
+      onclick="window.location.href='/pages/index.html'">
+      CroG</h1>
       
       <div class="searchBarDiv">
         <form class="searchBarForm">
@@ -27,12 +30,11 @@
       
     <div class="contentDiv">
       
-      <div class="filtersDiv">
-        <h1>filters</h1>
+      <div id="filtersDiv">
       </div>
       
       <div id="searchResultsDiv">
-        <h1>Search results:</h1>
+        <h1 class="searchText">Search results:</h1>
         <div id="searchResults">results</div>
       </div>
 
