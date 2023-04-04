@@ -25,7 +25,6 @@ span:focus
 }
 
 .topButtons {  
-    align-self: flex-end;
     display: flex;
     flex-direction: row;
 }
@@ -42,13 +41,8 @@ span:focus
     box-shadow: 6px 6px;
 }
 
-.topButton:hover {
-    background-color: #3e8e41;
-}
-
 .searchBarDiv {
     flex-grow: 1;
-    background-color: #B0C4DE;
 }
 
 .searchBarForm {
@@ -56,23 +50,42 @@ span:focus
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    background-color: #B0C4DE;
-    border-radius: 15px;
-    padding: 10px;
     
 }
+
+#searchInput {
+    width: 60vw;
+    height: 60px;
+    padding: 10px;
+    padding-left: 60px;
+    font-size: 16px;
+    background-position: 15px 15px;
+    background-size: 30px 30px;
+    box-shadow: 1px 1px #e76f51,
+                2px 2px #e76f51,
+                3px 3px #e76f51,
+                4px 4px #e76f51,
+                5px 5px #e76f51,
+                6px 6px #e76f51,
+                7px 7px #e76f51,
+                8px 8px #e76f51,
+                9px 9px #e76f51,
+                10px 10px #e76f51,
+                11px 11px #e76f51;
+  }
 
 .contentDiv {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
 }
 
 h1 {
 	text-align: center;
     font-family: 'Roboto', sans-serif;
+    color: #ccc;
+    padding-left: 30px;
 
 }
 
@@ -88,21 +101,83 @@ label {
 }
 
 input[type=text], input[type=email], input[type=password] {
-	padding: 5px;
-	border-radius: 5px;
-	border: 1px solid #ccc;
+    border: 1px solid #2d3142c1;
 }
 
 input[type=submit] {
-	background-color: #4CAF50;
-	color: #fff;
+	color: #2d3142c1;
 	padding: 10px;
 	margin-top: 10px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
+    width:15vw;
+    border: 1px solid #2d3142c1;
 }
 
-input[type=submit]:hover {
-	background-color: #3e8e41;
-}
+.title {
+    font-size: 50px;
+      text-shadow: 1px 1px #e76f51,
+                  2px 2px #e76f51,
+                  3px 3px #e76f51,
+                  4px 4px #e76f51,
+                  5px 5px #e76f51,
+                  6px 6px #e76f51;
+  }
+  
+  .title:hover {
+    transform: translate(-5px, -5px);
+    text-shadow: 1px 1px #e76f51,
+                  2px 2px #e76f51,
+                  3px 3px #e76f51,
+                  4px 4px #e76f51,
+                  5px 5px #e76f51,
+                  6px 6px #e76f51,
+                  7px 7px #e76f51,
+                  8px 8px #e76f51,
+                  9px 9px #e76f51,
+                  10px 10px #e76f51,
+                  11px 11px #e76f51;
+    
+  }
+
+  .updateButton{
+    background-color: #EBFFF3;
+    color: #2d3142c1;
+    font-size: 25px;
+    padding: 14px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 6px 6px;    
+  }
+
+  .formRow{
+    background-color: #e5dabe;
+    color: #2d3142c1;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px #2D3142;
+    margin-bottom: 16px;
+    padding: 16px;
+  }
+
+  .accountDiv{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-self: center;
+  }
+
+  .accountForm{
+    background-color: #e9c46a;
+    width:50vw;
+    border-radius: 10px;
+    padding: 10px;
+    text-shadow: 1px 1px #e76f51,
+                2px 2px #e76f51,
+                3px 3px #e76f51,
+                4px 4px #e76f51,
+                5px 5px #e76f51,
+                6px 6px #e76f51;
+  }
