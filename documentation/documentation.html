@@ -105,7 +105,45 @@
                 <h2 id="external_interface_requirements">3. External Interface Requirements</h2>
                 <section>
                     <h3 id="user_interface">3.1 User Interface</h3>
-                    <p>TBD.....</p>
+                    <p>In the following sections, there will be a presentation of each page/interface of the app where the user can interact with the functionality.</p>
+                    <h4>Search Page</h4>
+                    <figure typeof="sa:image" figcaption="Search Page">
+                        <img src="./public/search.png" alt="Search Page/Landing Page" style="width:40%; height:40%;">
+                    </figure>
+                    <p>The landing page of the application is represented by the Search Page. Designed to be minimalist and easy to use, this page allows the users to access 2 main functionalities: search and login/singup. In this way, the user can branch out into the different pages of the platform by searching for a resource(which redirects the user to the Search Result page) or by loggin in(which redirects the user to the Login/Sign-up page).</p>
+                    <h4>Search Result Page</h4>
+                    <figure typeof="sa:image" figcaption="SearchResults Page">
+                        <img src="./public/searchResult.png" alt="Search Results Page" style="width:40%; height:40%;">
+                    </figure>
+                    <p>The Search Result page is an interface of the app that the user will reach after inputing a search string in the Search Bar. The page will return the available resources that match with the keywords in the search input. Also, on this page, the user can use filters(in the left side menu) to reduce the number of resources found to his/her preferences. Filters can include things like the prefered programming language, the type of resource, etc. Also, a common element between all pages(except Search Page) is the header, which will be kept the same across the whole app for easier access to certain functionalities.</p>
+                    <h4>Login/Sign-Up Page</h4>
+                    <figure typeof="sa:image" figcaption="Login Page">
+                        <img src="./public/login.png" alt="Login Page" style="width:40%; height:40%;">
+                    </figure>
+                    <figure typeof="sa:image" figcaption="SignUp Page">
+                        <img src="./public/signup.png" alt="SignUp Page" style="width:40%; height:40%;">
+                    </figure>
+                    <p>These 2 pages- represent a basic login/signup module for our application. Here, the user will input their credentials that will be validated and if the validation is successful, the user will be redirected to the Search Page, but with new functionalities available(Account Page + Add Resources Page).</p>
+                    <p>In the case of a sign up, a new user will be created and the same flow as in the case of the login will be applied.</p>
+                    <h4>Account Page</h4>
+                    <figure typeof="sa:image" figcaption="Account Page">
+                        <img src="./public/account.png" alt="Account Page" style="width:40%; height:40%;">
+                    </figure>
+                    <p>In the account page, a logged user can perform update actions on his personal info(Email, password, name, etc.). Also, here the user will have the possibility to see a list of saved resources, where he can access them faster than searching again for that specific resource. Again, the same common header is kept on this page as well.</p>
+                    <h4>Add Resource Page</h4>
+                    <figure typeof="sa:image" figcaption="AddResource Page">
+                        <img src="./public/addResource.png" alt="Add Resource Page" style="width:40%; height:40%;">
+                    </figure>
+                    <p>In the add resource page, the user has the ability to add a new resource to the project database that can be looked up by future users. For adding a valid resource, the user will have to fill a certain amount of required data about the new resource(name, address, type, a short description). Also, the app allows for multiple "tags" to be added to the resource, by using a list.</p>
+                    <h4>Usecase Diagram</h4>
+                    <figure typeof="sa:image" figcaption="Usecase Diagram">
+                        <img src="./public/CroG.drawio (1).png" alt="Usecase diagram for CroG user flow.">
+                    </figure>
+                    
+                    <p>The following diagram acts as a representation for the flow of our application. A user will arrive at the Search Page and can choose to search for a resource with or without being logged in. After introducing the search input, the user will be redirected to the Search Result Page where he can filter further the search results or, if logged in, can save a certain resource to his profile for easier access.</p>
+                    <p>If the user chooses to login or sign up, he will be redirected to the login page where his credentials will be validated. Or, if he signs up, a new user will be created with the credeantials he/she introduced. After a valid login/sign-up the user will have acces to the Search function as before, but besides, he will have access to the Account Info and Resources Functions.</p>
+                    <p>After accessing the Account Page, the user will have the ability to update his personal info or see a list of saved resources associated with his profile.</p>
+                    <p>When accessing the Resources Page, the user can add a new resource to the database of resources. This will be done by filling a form with the required data of a resource(name, description, category, type, etc.)</p>
                 </section>
                 <section>
                     <h3 id="hardware_interface">3.2 Hardware Interface</h3>
