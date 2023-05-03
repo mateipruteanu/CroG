@@ -2,7 +2,7 @@ let queryString = window.location.search;
 
 let searchBarText = document.getElementById("searchInput");
 
-queryString = queryString.replace("?search=", "");
+queryString = queryString.replace("?query=", "");
 queryString = decodeURIComponent(queryString);
 console.log(queryString);
 

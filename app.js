@@ -1,26 +1,45 @@
-const http = require("http");
-const fs = require("fs");
+let http = require("http");
+let path = require("path");
+const router = require("./utils/router.js");
 
-const server = http.createServer((req, res) => {
-  if (req.url === "/") {
-    res.writeHead(302, { Location: "/pages/index.html" });
-    res.end();
-  } else if (req.url === "/pages/index.html") {
-    fs.readFile("./pages/index.html", (err, data) => {
-      if (err) {
-        res.writeHead(500);
-        res.end("Error loading index.html");
-      } else {
-        res.writeHead(200, { "Content-Type": "text/html" });
-        res.end(data);
-      }
+
+let server = http.createServer(function (request, response) {    
+  var path = request.url;
+  router.route(request, response, path); 
+  
+  if(request.method == "POST" && path === "/login"){
+    let body = "";
+    request.on("data", function (data) {
+      body += data;
     });
-  } else {
-    res.writeHead(404);
-    res.end("Page not found");
+    request.on("end", function () {
+      let pairs = body.split("&");
+      let username = pairs[0].split("=")[1];
+      let password = pairs[1].split("=")[1];
+      console.log("username: " + username + "\n");
+      console.log("password: " + password + "\n")
+      // use validate function to validate login values
+    });
   }
+  if (request.method == "POST" && path === "/signup") {
+    let body = "";
+    request.on("data", function (data) {
+      body += data;
+    });
+    request.on("end", function () {
+      console.log("body: " + body + "\n");
+      let pairs = body.split("&");
+      let email = decodeURIComponent(pairs[0].split("=")[1]);
+      let username = decodeURIComponent(pairs[1].split("=")[1]);
+      let password = decodeURIComponent(pairs[2].split("=")[1]);
+      let repeat_password = decodeURIComponent(pairs[3].split("=")[1]);
+      console.log("email: " + email + "\n");
+      console.log("username: " + username + "\n");
+      console.log("password: " + password + "\n");
+      console.log("repeat_password: " + repeat_password + "\n");
+    });
+  }
+
 });
 
-server.listen(3000, () => {
-  console.log("Server is listening on port 3000");
-});
+server.listen(3000);

@@ -7,5 +7,3 @@ queryString = queryString.replace("?search=", "");
 queryString = decodeURIComponent(queryString);
 
 searchBarText.textContent = queryString;
-
-

@@ -16,7 +16,7 @@ function validate(){
     }
     else{
         // redirect to pages/index.html 
-        window.location.href = "index.html";
+        window.location.href = "/";
         return true;
 
     }
