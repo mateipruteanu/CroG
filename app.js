@@ -5,9 +5,17 @@ const router = require("./utils/router.js");
 
 let server = http.createServer(function (request, response) {    
   var path = request.url;
-  router.route(request, response, path); 
+  if (path.indexOf("?") != -1) {
+    path = path.substring(0, path.indexOf("?"));
+  }
+
+  router.route(request, response, path, request.method); 
+  
+  let cookies = request.headers.cookie;
+  console.log("cookies: " + cookies + "\n");
   
   if(request.method == "POST" && path === "/login"){
+    console.log("trying to login\n\n");
     let body = "";
     request.on("data", function (data) {
       body += data;
@@ -18,7 +26,15 @@ let server = http.createServer(function (request, response) {
       let password = pairs[1].split("=")[1];
       console.log("username: " + username + "\n");
       console.log("password: " + password + "\n")
-      // use validate function to validate login values
+      if(username === "admin" && password === "admin"){
+        console.log("[admin logged in]\n\n");
+        response.writeHead(302, { "Location": "/account" });
+        response.end();
+      }
+      else{
+        response.writeHead(302, { "Location": "/login" });
+        response.end();
+      }
     });
   }
   if (request.method == "POST" && path === "/signup") {
@@ -39,6 +55,8 @@ let server = http.createServer(function (request, response) {
       console.log("repeat_password: " + repeat_password + "\n");
     });
   }
+
+  
 
 });
 
