@@ -1,14 +1,16 @@
 let http = require("http");
 let path = require("path");
 const router = require("./utils/router.js");
-
+const db = require("./utils/DbConn.js");
 
 let server = http.createServer(function (request, response) {    
   var path = request.url;
+
   if (path.indexOf("?") != -1) {
     path = path.substring(0, path.indexOf("?"));
   }
 
+  db.connect();
   router.route(request, response, path, request.method); 
   
   let cookies = request.headers.cookie;

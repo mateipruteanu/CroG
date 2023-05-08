@@ -6,6 +6,17 @@ let connection = mysql.createConnection({
     user: 'admin',
     password: 'crogcrog',
 });
+function connect(){
+    connection.connect(function(err) {
+        if (err){
+            console.log('Error connecting to Db' + err.stack);
+            return;
+        };
+    
+        console.log('Connected as id' + connection.threadId);
+    });
+}
+
 
 connection.connect(function(err) {
     if (err){
@@ -20,3 +31,5 @@ connection.query('SHOW TABLES', function(err, rows, fields) {
     if (err) throw err;
     console.log('The solution is: ', rows);
 });
+
+module.exports = connection;
