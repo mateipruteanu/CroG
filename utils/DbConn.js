@@ -1,10 +1,11 @@
 const mysql = require('mysql');
-let connection = mysql.createConnection({
-    host: 'database-1.cl4lhu896l24.eu-north-1.rds.amazonaws.com',
-    port: '3306',
-    database: 'admin',
-    user: 'admin',
-    password: 'crogcrog',
+let pool = mysql.createPool({
+    connectionLimit: 10,
+    host: "34.116.255.231",
+    port: "3306",
+    database: "root",
+    user: "root",
+    password: "k9RL^9p#2RHC^u",
 });
 function connect(){
     connection.connect(function(err) {
@@ -31,5 +32,20 @@ connection.query('SHOW TABLES', function(err, rows, fields) {
     if (err) throw err;
     console.log('The solution is: ', rows);
 });
+
+// pool connection
+let pool = mysql.createPool({
+    connectionLimit: 10,
+    host: "34.116.255.231",
+    port: "3306",
+    database: "root",
+    user: "root",
+    password: "k9RL^9p#2RHC^u",
+});
+
+
+
+
+connection.end();
 
 module.exports = connection;
