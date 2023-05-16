@@ -17,14 +17,14 @@ function connect(){
     });
 }
 
-connection.connect(function(err) {
-    if (err){
-        console.log('Error connecting to Db' + err.stack);
-        return;
-    };
+// connection.connect(function(err) {
+//     if (err){
+//         console.log('Error connecting to Db' + err.stack);
+//         return;
+//     };
 
-    console.log('Connected as id' + connection.threadId);
-});
+//     console.log('Connected as id' + connection.threadId);
+// });
 
 connection.query('SHOW TABLES', function(err, rows, fields) {
     if (err) throw err;

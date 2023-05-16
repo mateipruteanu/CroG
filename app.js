@@ -10,7 +10,7 @@ let server = http.createServer(function (request, response) {
     path = path.substring(0, path.indexOf("?"));
   }
 
-  db.connect();
+  //db.connect();
   router.route(request, response, path, request.method); 
   
   let cookies = request.headers.cookie;
