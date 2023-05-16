@@ -27,10 +27,9 @@ connection.query("SHOW TABLES", function (err, rows, fields) {
 connection.query("SELECT * FROM users", function (err, rows, fields) {
   if (err) throw err;
   console.log("The solution is: ", rows);
-  var fs = require("fs");
-  fs.writeFile("users.json", JSON.stringify(rows), function (err) {
-    if (err) throw err;
-    console.log("done");
-  });
 });
+
+// TODO: get a specific user
+
+
 

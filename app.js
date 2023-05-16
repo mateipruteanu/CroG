@@ -1,22 +1,32 @@
 let http = require("http");
 let path = require("path");
 const router = require("./utils/router.js");
-const db = require("./utils/DbConn.js");
+const DbConn = require("./utils/DbConn.js");
 
-let server = http.createServer(function (request, response) {    
+
+let server = http.createServer(function (request, response) {
   var path = request.url;
-
   if (path.indexOf("?") != -1) {
     path = path.substring(0, path.indexOf("?"));
   }
 
-  db.connect();
-  router.route(request, response, path, request.method); 
-  
+  // const xHttp = new XMLHttpRequest();
+  // xHttp.open("GET", "http://localhost:3015", true);
+  // xHttp.send();
+  // xHttp.onreadystatechange = function () {
+  //   if (this.readyState == 4 && this.status == 200) {
+  //     console.log("response from localhost:3015: " + this.responseText);
+  //   }
+  // };
+
+
+  router.route(request, response, path, request.method);
+
   let cookies = request.headers.cookie;
   console.log("cookies: " + cookies + "\n");
-  
-  if(request.method == "POST" && path === "/login"){
+
+  // temporary login and signup code
+  if (request.method == "POST" && path === "/login") {
     console.log("trying to login\n\n");
     let body = "";
     request.on("data", function (data) {
@@ -27,16 +37,18 @@ let server = http.createServer(function (request, response) {
       let username = pairs[0].split("=")[1];
       let password = pairs[1].split("=")[1];
       console.log("username: " + username + "\n");
-      console.log("password: " + password + "\n")
-      if(username === "admin" && password === "admin"){
-        console.log("[admin logged in]\n\n");
-        response.writeHead(302, { "Location": "/account" });
-        response.end();
-      }
-      else{
-        response.writeHead(302, { "Location": "/login" });
-        response.end();
-      }
+      console.log("password: " + password + "\n");
+      DbConn.query(
+        "SELECT * FROM users WHERE username = '" +
+          username +
+          "' AND password = '" +
+          password +
+          "'",
+        function (err, rows, fields) {
+          if (err) throw err;
+          console.log("Found: ", rows);
+        }
+      );
     });
   }
   if (request.method == "POST" && path === "/signup") {
@@ -57,9 +69,6 @@ let server = http.createServer(function (request, response) {
       console.log("repeat_password: " + repeat_password + "\n");
     });
   }
-
-  
-
 });
 
 server.listen(3000);
