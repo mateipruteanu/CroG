@@ -47,6 +47,11 @@ let server = http.createServer(function (request, response) {
         function (err, rows, fields) {
           if (err) throw err;
           console.log("Found: ", rows);
+          //redirect to my account
+          response.writeHead(302, {
+            Location: "/account",
+          });
+          response.end();
         }
       );
     });
