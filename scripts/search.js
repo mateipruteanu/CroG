@@ -9,22 +9,23 @@ console.log(queryString);
 searchBarText.value = queryString;
 
 class Card {
-  constructor(id, title, description, tags) {
+  constructor(id, title, description, tags, image) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.tags = tags;
+    this.image = image; /// tbd
   }
 }
 
 let cards = [
-  new Card(1, "Card 1", "This is card 1", ["c++", "javascript"]),
-  new Card(2, "Card 2", "This is card 2", ["c++", "oop"]),
-  new Card(3, "Card 3", "This is card 3", ["web programming", "socket"]),
-  new Card(4, "Card 4", "This is card 4", ["react", "framework"]),
-  new Card(5, "Card 5", "This is card 5", ["coding", "creative"]),
-  new Card(6, "Card 6", "This is card 6", ["linux", "unix"]),
-  new Card(7, "Card 7", "This is card 7", ["tag1", "tag2"]),
+  new Card(1, "Card 1","This is card 1", ["c++", "javascript"]),
+  new Card(2, "Card 2","This is card 2", ["c++", "oop"]),
+  new Card(3, "Card 3","This is card 3", ["web programming", "socket"]),
+  new Card(4, "Card 4","This is card 4", ["react", "framework"]),
+  new Card(5, "Card 5","This is card 5", ["coding", "creative"]),
+  new Card(6, "Card 6","This is card 6", ["linux", "unix"]),
+  new Card(7, "Card 7","This is card 7", ["tag1", "tag2"]),
 ];
 
 let searchResults = document.getElementById("searchResults");
