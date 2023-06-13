@@ -3,11 +3,9 @@ let path = require("path");
 const router = require("./utils/router.js");
 const DbConn = require("./utils/DbConn.js");
 const requestFunc = require("request");
-<<<<<<< Updated upstream
 const fs = require("fs");
-=======
 const queryString = require("querystring");
->>>>>>> Stashed changes
+
 
 
 let server = http.createServer(function (request, response) {
@@ -22,8 +20,7 @@ let server = http.createServer(function (request, response) {
   let cookies = request.headers.cookie;
   console.log("cookies: " + cookies + "\n");
 
-<<<<<<< Updated upstream
-=======
+
   // temporary login and signup code
   if (request.method == "POST" && path === "/login") {
     console.log("trying to login\n\n");
@@ -91,7 +88,6 @@ let server = http.createServer(function (request, response) {
     })
   }
 
->>>>>>> Stashed changes
 });
 
 server.listen(3000);

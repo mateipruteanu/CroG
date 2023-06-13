@@ -228,12 +228,8 @@ function route(request, response, path, method) {
 
       });
     }
-<<<<<<< Updated upstream
   }
 
-=======
-    }
->>>>>>> Stashed changes
 }
 
 module.exports = { route };
