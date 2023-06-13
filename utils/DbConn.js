@@ -11,7 +11,7 @@ connection.connect(function(err) {
     if (err) {
         console.log('Error connecting to Db' + err.stack);
         return;
-    };
+    }
 
 //     console.log('Connected as id' + connection.threadId);
  });
