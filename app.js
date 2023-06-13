@@ -2,6 +2,7 @@ let http = require("http");
 let path = require("path");
 const router = require("./utils/router.js");
 const DbConn = require("./utils/DbConn.js");
+const requestFunc = require("request");
 
 
 let server = http.createServer(function (request, response) {
@@ -33,27 +34,32 @@ let server = http.createServer(function (request, response) {
       body += data;
     });
     request.on("end", function () {
+      console.log("[login]body: " + body + " end body" + "\n");
       let pairs = body.split("&");
-      let username = pairs[0].split("=")[1];
-      let password = pairs[1].split("=")[1];
-      console.log("username: " + username + "\n");
-      console.log("password: " + password + "\n");
-      DbConn.query(
-        "SELECT * FROM users WHERE username = '" +
-          username +
-          "' AND password = '" +
-          password +
-          "'",
-        function (err, rows, fields) {
-          if (err) throw err;
-          console.log("Found: ", rows);
-          //redirect to my account
-          response.writeHead(302, {
-            Location: "/account",
-          });
-          response.end();
+      const username = pairs[0].split("=")[1];
+      const password = pairs[1].split("=")[1];
+      const userObject = {
+        username: username,
+        password: password,
+      };
+      const userJson = JSON.stringify(userObject);
+      console.log("userJson: " + userJson + "\n");
+      const loginServiceUrl = "http://localhost:3005/api/login";
+      const options = {
+        url: loginServiceUrl,
+        method: "POST",
+        body: userJson,
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Length": userJson.length,
+        },
+      };
+      requestFunc(options, function (error, response, body) {
+        if (error) {
+          console.log("error: " + error + "\n");
         }
-      );
+        console.log("body: " + body + "\n");
+      });
     });
   }
   if (request.method == "POST" && path === "/signup") {

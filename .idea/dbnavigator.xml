@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -12,18 +12,32 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="d632beea-a8f6-4da3-bd34-ebe9385c2604">
-      <console name="CroG" type="STANDARD" schema="root" session="Main" />
+    <connection id="9f084d2d-9b72-4630-a37c-77df8a4db9d7">
+      <console name="Connection" type="STANDARD" schema="mysql" session="Main"><![CDATA[select * from root.users;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="9f084d2d-9b72-4630-a37c-77df8a4db9d7" object-ref="schemas/root/tables/resources" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="d632beea-a8f6-4da3-bd34-ebe9385c2604" dataset="root.resource_tag" active-filter-id="" />
+    <filter-actions connection-id="9f084d2d-9b72-4630-a37c-77df8a4db9d7" dataset="root.resources" active-filter-id="EMPTY_FILTER">
+      <filter id="24c17193-ab83-482d-bf0b-b9ffc72b9490" name="1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="1" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="9f084d2d-9b72-4630-a37c-77df8a4db9d7" dataset="root.users" active-filter-id="dbd5c028-a7d8-4969-acad-dc84b540b49c">
+      <filter id="dbd5c028-a7d8-4969-acad-dc84b540b49c" name="1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="1" active="true" />
+      </filter>
+    </filter-actions>
+  </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
@@ -31,9 +45,9 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="d632beea-a8f6-4da3-bd34-ebe9385c2604" active="true" signed="true">
+      <connection id="9f084d2d-9b72-4630-a37c-77df8a4db9d7" active="true" signed="true">
         <database>
-          <name value="CroG" />
+          <name value="Connection" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
@@ -44,7 +58,7 @@
           <url-type value="DATABASE" />
           <host value="34.116.255.231" />
           <port value="3306" />
-          <database value="root" />
+          <database value="mysql" />
           <tns-folder value="" />
           <tns-profile value="" />
           <type value="USER_PASSWORD" />
@@ -512,5 +526,8 @@
         </visibility-settings>
       </environment>
     </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
   </component>
 </project>

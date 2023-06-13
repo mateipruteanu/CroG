@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
     "loginService": "nodemon myservice/loginService.js",
-    "all": "concurrently \"npm run dev\" \"npm run loginService\""
+    "resourceManagerService": "nodemon myservice/resourceManagerService.js",
+    "all": "concurrently \"npm run dev\" \"npm run loginService\" \"npm run resourceManagerService\""
   },
   "author": "",
   "license": "ISC",

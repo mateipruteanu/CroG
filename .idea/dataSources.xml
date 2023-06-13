@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="CroG" uuid="9e006cfc-bbba-40d5-b7d1-83ba2c99089c">
+    <data-source source="LOCAL" name="@34.116.255.231" uuid="bd793660-1456-4f49-ae87-d04c90f23fed">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://34.116.255.231:3306/root</jdbc-url>
+      <jdbc-url>jdbc:mysql://34.116.255.231:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
