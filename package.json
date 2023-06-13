@@ -8,7 +8,8 @@
     "dev": "nodemon app.js",
     "loginService": "nodemon myservice/loginService.js",
     "resourceManagerService": "nodemon myservice/resourceManagerService.js",
-    "all": "concurrently \"npm run dev\" \"npm run loginService\" \"npm run resourceManagerService\""
+    "getAllResources": "nodemon myservice/resourceGetService.js",
+    "all": "concurrently \"npm run dev\" \"npm run loginService\" \"npm run resourceManagerService\" \"npm run getAllResources\""
   },
   "author": "",
   "license": "ISC",
