@@ -1,3 +1,7 @@
+import {topButtonManager} from "/scripts/topButtonManager.js";
+
+topButtonManager();
+
 let queryString = window.location.search;
 
 let searchBarText = document.getElementById("searchInput");

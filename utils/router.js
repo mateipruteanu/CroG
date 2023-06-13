@@ -104,7 +104,7 @@ function route(request, response, path, method) {
 
                   response.writeHead(302, {
                     "Content-Type": "text/html",
-                    'Set-Cookie': `sessionId=${sessionId}; Expires=${expires}; Path=/; HttpOnly`,
+                    'Set-Cookie': `sessionId=${sessionId}; Expires=${expires}; Path=/;`,
                     "Location": "/account",
                   });
                   response.end(content, "utf-8");

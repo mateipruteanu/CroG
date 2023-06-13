@@ -11,15 +11,15 @@
       href="https://fonts.googleapis.com/css?family=Nabla"
       rel="stylesheet"
     />
-    <script src="/scripts/index.js" defer></script>
+    <script type="module" src="/scripts/index.js" defer></script>
   </head>
   <body>
     <div class="mainDiv">
       <form class="topButtons">
-        <button class="topButton" type="submit" formaction="/login">
+        <button id="leftButton" class="topButton" type="submit" formaction="/login">
           Login
         </button>
-        <button class="topButton" type="submit" formaction="/signup">
+        <button id="rightButton" class="topButton" type="submit" formaction="/signup">
           Sign Up
         </button>
       </form>

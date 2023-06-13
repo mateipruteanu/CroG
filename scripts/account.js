@@ -1,3 +1,7 @@
+import {topButtonManager} from "/scripts/topButtonManager.js";
+
+topButtonManager();
+
 let queryString = window.location.search;
 console.log(queryString);
 
@@ -7,3 +11,4 @@ queryString = queryString.replace("?search=", "");
 queryString = decodeURIComponent(queryString);
 
 searchBarText.textContent = queryString;
+
