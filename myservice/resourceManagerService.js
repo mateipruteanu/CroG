@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
                         category : '',
                         language : '',
                         url : '',
-                        picture : '',
+                        //picture : '',
                         user_id : ''
                     };
 
@@ -31,32 +31,32 @@ const server = http.createServer((req, res) => {
 
 
                     parts.forEach(part => {
-                        if (part.name === 'picture') {
-                            // @TODO - adding the image to the DB (not working yet)
-                            const fileName = "fisier.txt";
-                            const filePath = `${fileName}`;
+                        // if (part.name === 'picture') {
+                        //     // @TODO - adding the image to the DB (not working yet)
+                        //     const fileName = "fisier.txt";
+                        //     const filePath = `${fileName}`;
+                        //
+                        //
+                        //     const blob = new Blob([part.data], { type: "image/jpeg" });
+                        //     const blobUrl = URL.createObjectURL(blob);
+                        //     console.log("blob " + blob);
+                        //
+                        //
+                        //     formDataObject.picture = blob;
+                        //
 
-
-                            const blob = new Blob([part.data], { type: "image/jpeg" });
-                            const blobUrl = URL.createObjectURL(blob);
-                            console.log("blob " + blob);
-
-
-                            formDataObject.picture = blob;
-
-
-                        } else {
+                        // } else {
                             formDataObject[part.name] = part.data.toString();
 
                             console.log(part.name, part.data.toString());
-                        }
+                        // }
                     });
 
 
                     console.log(JSON.stringify(formDataObject));
 
-                    const query = "INSERT INTO resources (category, description, language, name, picture, url, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
-                    const values = [formDataObject.category, formDataObject.description, formDataObject.language, formDataObject.name, formDataObject.picture, formDataObject.url, formDataObject.user_id];
+                    const query = "INSERT INTO resources (category, description, language, name,  url, user_id) VALUES (?, ?, ?, ?, ?, ?)";
+                    const values = [formDataObject.category, formDataObject.description, formDataObject.language, formDataObject.name, formDataObject.url, formDataObject.user_id];
 
                     dbConn.query(query, values, function (err, result) {
                         if(err)

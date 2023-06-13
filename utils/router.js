@@ -37,13 +37,13 @@ function route(request, response, path, method) {
         response.writeHead(200, { "Content-Type": "image/svg+xml" });
         response.end(content, "utf-8");
       });
-    } 
+    }
      else {
       response.writeHead(404);
       response.end();
     }
 
-    
+
   }
   if(method === "POST"){
     if (path === "/login") {
@@ -228,8 +228,12 @@ function route(request, response, path, method) {
 
       });
     }
+<<<<<<< Updated upstream
   }
 
+=======
+    }
+>>>>>>> Stashed changes
 }
 
 module.exports = { route };

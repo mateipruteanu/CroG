@@ -32,16 +32,16 @@
             <div class="contentDiv">
                 <div class="addResourceDiv">
                     <h1>Add a resource</h1>
-                    <form class="addResourceForm">
-                        <input class="formRow" type="text" id="resourceName" placeholder="Resource name">
-                        <input class="formRow" type="text" id="resourceDescription" placeholder="Resource description">
-                        <input class="formRow" type="text" id="resourceTags" placeholder="Resource tags">
-                        <input class="formRow" type="text" id="resourceCategory" placeholder="Resource category">
-                        <input class="formRow" type="text" id="resourceLink" placeholder="Resource link">
-                        <input class="formRow" type="text" id="resourceLanguage" placeholder="Resource language">
-                        <label for="resourceImage">Select a file:</label>
-                        <input class="formRow" type="file" id="resourceImage" placeholder="Resource image">
-                        <input  class="topButton" type="submit" value="Add">
+                    <form class="addResourceForm" name="addResourceFormName" method="POST">
+                        <input class="formRow" name="name" type="text" id="resourceName" placeholder="Resource name">
+                        <input class="formRow" name="description" type="text" id="resourceDescription" placeholder="Resource description">
+                        <input class="formRow" name="tags" type="text" id="resourceTags" placeholder="Resource tags">
+                        <input class="formRow" name="category" type="text" id="resourceCategory" placeholder="Resource category">
+                        <input class="formRow" name="link" type="text" id="resourceLink" placeholder="Resource link">
+                        <input class="formRow" name="language" type="text" id="resourceLanguage" placeholder="Resource language">
+<!--                        <label for="resourceImage">Select a file:</label>-->
+<!--                        <input class="formRow" type="file" id="resourceImage" placeholder="Resource image">-->
+                        <input  class="topButton" type="submit" value="Add" id="add_id">
                     </form>
                 </div>
             </div>
