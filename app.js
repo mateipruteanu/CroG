@@ -16,7 +16,6 @@ let server = http.createServer(function (request, response) {
 
   router.route(request, response, path, request.method);
   let cookies = request.headers.cookie;
-  console.log("cookies: " + cookies + "\n");
 
 });
 

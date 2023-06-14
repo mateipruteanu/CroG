@@ -35,7 +35,7 @@ searchResults.innerHTML = "";
 
 function showAllCards() {
   const searchResults = document.getElementById("searchResults");
-  searchResults.innerHTML = ""; // Golește conținutul existent al elementului
+  searchResults.innerHTML = "";
 
   for (let card of cards) {
     let cardElement = document.createElement("div");

@@ -5,7 +5,8 @@ const routes = require("./routes.js");
 const requestFunc = require("request");
 
 function route(request, response, path, method) {
-  console.log(method + ": " + path + "\n");
+  console.log( "[router]" + method + ": " + path + "\n");
+
 
   if (method === "GET") {
     if (path === "/") {
@@ -36,29 +37,37 @@ function route(request, response, path, method) {
         }
     } else if (path === "/account") {
         let cookies = request.headers.cookie;
-        let sessionId = cookies.split("=")[1].trim();
-        if(sessionId !== null && sessionId !== undefined && sessionId !== "") {
-            const query = "SELECT * FROM users WHERE session_id = ?";
-            const params = [sessionId];
-            DbConn.query(query, params, function (err, rows, fields) {
-                if (err) throw err;
-                if (rows.length > 0) {
-                    response.writeHead(200, {"Content-Type": "text/html"});
-                    fs.readFile("./pages/account.html", function (error, content) {
-                        response.end(content, "utf-8");
-                    });
-                } else {
-                    response.writeHead(302, {
-                        Location: "/login",
-                    });
-                    response.end();
-                }
-            });
-        } else {
+        if(cookies === undefined || cookies === null || cookies === "") {
             response.writeHead(302, {
                 Location: "/login",
             });
             response.end();
+        }
+        else {
+            let sessionId = cookies.split("=")[1].trim();
+            if (sessionId !== null || sessionId !== undefined || sessionId !== "") {
+                const query = "SELECT * FROM users WHERE session_id = ?";
+                const params = [sessionId];
+                DbConn.query(query, params, function (err, rows, fields) {
+                    if (err) throw err;
+                    if (rows.length > 0) {
+                        response.writeHead(200, {"Content-Type": "text/html"});
+                        fs.readFile("./pages/account.html", function (error, content) {
+                            response.end(content, "utf-8");
+                        });
+                    } else {
+                        response.writeHead(302, {
+                            Location: "/login",
+                        });
+                        response.end();
+                    }
+                });
+            } else {
+                response.writeHead(302, {
+                    Location: "/login",
+                });
+                response.end();
+            }
         }
     } else if (routes.includes(path)) {
       fs.readFile("./pages" + path + ".html", function (error, content) {
@@ -95,6 +104,7 @@ function route(request, response, path, method) {
   }
   if(method === "POST"){
     if (path === "/login") {
+
       let sessionId = "";
       console.log("trying to login");
       let body = "";
