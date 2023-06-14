@@ -1,4 +1,5 @@
 const fs = require('fs');
+const dbConn = require('../utils/DbConn');
 
 fs.readFile('data.txt', 'utf8', (err, data) => {
     if (err) {
@@ -7,14 +8,14 @@ fs.readFile('data.txt', 'utf8', (err, data) => {
     }
 
     const lines = data.split('\n');
-    const tags = [];
     const resources = [];
     class resource {
-        constructor(name, url, description, tags) {
+        constructor(name, url, description, tag, userId) {
             this.name = name;
             this.url = url;
             this.description = description;
-            this.tags = tags;
+            this.tag = tag;
+            this.userId = userId;
         }
     }
 
@@ -23,10 +24,8 @@ fs.readFile('data.txt', 'utf8', (err, data) => {
 
     lines.forEach(line => {
         if (line.startsWith('#')) {
-            // Extract the tag from the line
             currentTag = line.substring(line.lastIndexOf('#') + 1).trim();
         } else if (line.startsWith('- [')) {
-            // Extract the name, URL, and description from the line
             const nameStartIndex = line.indexOf('[') + 1;
             const nameEndIndex = line.indexOf(']');
             const urlStartIndex = line.indexOf('(') + 1;
@@ -37,18 +36,27 @@ fs.readFile('data.txt', 'utf8', (err, data) => {
             const url = line.substring(urlStartIndex, urlEndIndex);
 
 
-               // Create a new resource object
-            currentResource = new resource(name, url, description, [currentTag]);
-            // Add the resource to the list of resources
+            currentResource = new resource(name, url, description, currentTag, 0);
             resources.push(currentResource);
-            // Add the tag to the list of tags if it doesn't already exist
-            if (!tags.includes(currentTag)) {
-                tags.push(currentTag);
 
-            }
+        }
+
+
+
+    });
+
+    resources.forEach(resource => {
+        const query = "INSERT INTO resources (name, description, url,  user_id) VALUES ( ?, ?, ?, ?)";
+        const params = [resource.name, resource.description, resource.url, 1];
+        try {
+            dbConn.query(query, params, function (err, rows, fields) {
+                if (err) throw err;
+                console.log("[api/addResource] Added resource");
+            });
+        } catch (err) {
+            console.log("[api/addResource] Error: ", err);
         }
     });
 
-    console.log('Tags:', tags);
     console.log('Resources:', resources);
 });
