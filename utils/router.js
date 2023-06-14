@@ -3,6 +3,7 @@ var fs = require("fs");
 const DbConn = require("./DbConn.js");
 const routes = require("./routes.js");
 const requestFunc = require("request");
+const queryString= require("querystring");
 
 function route(request, response, path, method) {
   console.log( "[router]" + method + ": " + path + "\n");
@@ -285,6 +286,92 @@ function route(request, response, path, method) {
         }
 
       });
+    }
+    else if (path==="/addresource"){
+        console.log("[/addresource] request received");
+        let body = "";
+        request.on("data", function (data) {
+            body += data;
+        });
+        request.on("end", function () {
+            let parsedData=queryString.parse(body);
+            console.log("[/addresource] parsedData", parsedData);
+            //TODO: obtain userId from cookie
+            let userId=1;
+            const resourceObject ={
+                name: parsedData.name,
+                description: parsedData.description,
+                tags: parsedData.tags,
+                category: parsedData.category,
+                link: parsedData.link,
+                language: parsedData.language,
+                userId: userId,
+            }
+            const resourceJson = JSON.stringify(resourceObject);
+            console.log("[/addresource] resourceJson", resourceJson);
+            const options = {
+                host: 'localhost',
+                port: 3006,
+                path: '/api/addResource',
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': resourceJson.length,
+                },
+            };
+            const requestToApi = http.request(options, function (responseFromApi) {
+               let responseData = '';
+
+                responseFromApi.on('data', function (chunk) {
+                    responseData += chunk;
+                });
+
+                responseFromApi.on('end', function () {
+                    const responseBody = JSON.parse(responseData);
+                    console.log("[/addresource] responseBody from API", responseBody);
+                    if (responseBody.added) {
+                        fs.readFile("./pages/account.html", function (error, content) {
+                            if (error) {
+                                console.log(error);
+                            } else {
+                                response.writeHead(302, {
+                                    "Content-Type": "text/html",
+                                    "Location": "/account",
+                                });
+                                response.end(content, "utf-8");
+                            }
+                        });
+                        console.log("[/addresource] added resource successful\n");
+                    }
+                    else {
+                        console.log("[/addresource] add resource failed\n");
+                        fs.readFile("./pages/addresource.html", function (error, content) {
+                            if (error) {
+                                console.log(error);
+                            } else {
+                                response.writeHead(200, {
+                                    "Content-Type": "text/html",
+                                });
+                                response.end(content, "utf-8");
+                            }
+                        });
+                    }
+                });
+            });
+
+            requestToApi.on('error', function (error) {
+                console.error(error);
+            });
+
+            requestToApi.write(resourceJson);
+            requestToApi.end();
+
+            response.writeHead(302, {
+                "Content-Type": "text/html",
+                "Location": "/account",
+            });
+            response.end();
+        });
     }
   }
 
