@@ -9,7 +9,7 @@ const queryString = require("querystring");
 
 
 let server = http.createServer(function (request, response) {
-  var path = request.url;
+  let path = request.url;
   if (path.indexOf("?") !== -1) {
     path = path.substring(0, path.indexOf("?"));
   }

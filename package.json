@@ -6,10 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "loginService": "nodemon myservice/loginService.js",
+    "authentificationService": "nodemon myservice/authentificationService.js",
     "resourceManagerService": "nodemon myservice/resourceManagerService.js",
     "getAllResources": "nodemon myservice/resourceGetService.js",
-    "all": "concurrently \"npm run dev\" \"npm run loginService\" \"npm run resourceManagerService\" \"npm run getAllResources\""
+    "all": "concurrently \"npm run dev\" \"npm run authentificationService\" \"npm run resourceManagerService\" \"npm run getAllResources\""
   },
   "author": "",
   "license": "ISC",

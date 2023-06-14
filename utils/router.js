@@ -1,5 +1,6 @@
 var http = require("http");
 var fs = require("fs");
+const DbConn = require("./DbConn.js");
 const routes = require("./routes.js");
 const requestFunc = require("request");
 
@@ -8,10 +9,57 @@ function route(request, response, path, method) {
 
   if (method === "GET") {
     if (path === "/") {
-      fs.readFile("./pages/index.html", function (error, content) {
-        response.writeHead(200, { "Content-Type": "text/html" });
-        response.end(content, "utf-8");
-      });
+        fs.readFile("./pages/index.html", function (error, content) {
+            response.writeHead(200, {"Content-Type": "text/html"});
+            response.end(content, "utf-8");
+        });
+    } else if (path === "/logout") {
+        let cookies = request.headers.cookie;
+        if (cookies) {
+            let sessionId = cookies.split("=")[1];
+            const query = "UPDATE users SET session_id = NULL WHERE session_id = ?";
+            const params = [sessionId];
+            DbConn.query(query, params, function (err, rows, fields) {
+                if (err) throw err;
+                console.log("[router/logout] Deleted session ID");
+            });
+            response.writeHead(302, {
+                Location: "/",
+                "Set-Cookie": "sessionId=; Expires=Thu, 01 Jan 1970 00:00:00 GMT",
+            });
+            response.end();
+        } else {
+            response.writeHead(302, {
+                Location: "/",
+            });
+            response.end();
+        }
+    } else if (path === "/account") {
+        let cookies = request.headers.cookie;
+        let sessionId = cookies.split("=")[1].trim();
+        if(sessionId !== null && sessionId !== undefined && sessionId !== "") {
+            const query = "SELECT * FROM users WHERE session_id = ?";
+            const params = [sessionId];
+            DbConn.query(query, params, function (err, rows, fields) {
+                if (err) throw err;
+                if (rows.length > 0) {
+                    response.writeHead(200, {"Content-Type": "text/html"});
+                    fs.readFile("./pages/account.html", function (error, content) {
+                        response.end(content, "utf-8");
+                    });
+                } else {
+                    response.writeHead(302, {
+                        Location: "/login",
+                    });
+                    response.end();
+                }
+            });
+        } else {
+            response.writeHead(302, {
+                Location: "/login",
+            });
+            response.end();
+        }
     } else if (routes.includes(path)) {
       fs.readFile("./pages" + path + ".html", function (error, content) {
         response.writeHead(200, { "Content-Type": "text/html" });

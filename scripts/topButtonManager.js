@@ -44,7 +44,7 @@ function showSignedOutButtons() {
 
 
 export function topButtonManager() {
-    console.log("topButtonManager, cookie: " + document.cookie);
+    console.log("[topButtonManager] cookie: " + document.cookie);
     if (document.cookie.includes("sessionId")) {
         showSignedInButtons();
     } else {
