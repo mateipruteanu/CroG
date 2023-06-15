@@ -4,6 +4,7 @@ const DbConn = require("./DbConn.js");
 const routes = require("./routes.js");
 const requestFunc = require("request");
 const queryString= require("querystring");
+const getUserIdBySessionId= require("./IdRequestFunction.js");
 
 function route(request, response, path, method) {
   console.log( "[router]" + method + ": " + path + "\n");
@@ -298,11 +299,13 @@ function route(request, response, path, method) {
         request.on("data", function (data) {
             body += data;
         });
-        request.on("end", function () {
+        request.on("end", async function () {
             let parsedData=queryString.parse(body);
             console.log("[/addresource] parsedData", parsedData);
-            //TODO: obtain userId from cookie
-            let userId=1;
+            cookie = request.headers.cookie;
+            let sessionId = cookie.split("=")[1];
+            console.log("[/addresource] sessionId", sessionId);
+            let userId= await getUserIdBySessionId(sessionId);
             const resourceObject ={
                 name: parsedData.name,
                 description: parsedData.description,
