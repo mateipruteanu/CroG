@@ -279,64 +279,7 @@ function route(request, response, path, method) {
                             }
                         });
                     } else {
-                        const signupOptions = {
-                            host: 'localhost',
-                            port: 3005,
-                            path: '/api/signup',
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Content-Length': userJson.length,
-                            },
-                        };
-
-                        const requestToApi = http.request(signupOptions, function (responseFromApi) {
-                            let responseData = '';
-
-                            responseFromApi.on('data', function (chunk) {
-                                responseData += chunk;
-                            });
-
-                            responseFromApi.on('end', function () {
-                                const responseBody = JSON.parse(responseData);
-                                console.log("[router/signup]responseBody from API", responseBody);
-                                if (responseBody.registered) {
-                                    fs.readFile("./pages/login.html", function (error, content) {
-                                        if (error) {
-                                            console.log(error);
-                                        } else {
-                                            response.writeHead(302, {
-                                                "Content-Type": "text/html",
-                                                "Location": "/login",
-                                            });
-                                            response.end(content, "utf-8");
-                                        }
-                                    });
-                                    console.log("signup successful\n");
-                                }
-                                else {
-                                    console.log("signup failed\n");
-                                    fs.readFile("./pages/signup.html", function (error, content) {
-                                        if (error) {
-                                            console.log(error);
-                                        } else {
-                                            response.writeHead(200, {
-                                                "Content-Type": "text/html",
-                                            });
-                                            response.end(content, "utf-8");
-                                        }
-                                    });
-                                }
-                            });
-                        });
-
-                        requestToApi.on('error', function (error) {
-                            console.error(error);
-                        });
-
-                        requestToApi.write(userJson);
-                        requestToApi.end();
-                        console.log("ended response\n\n");
+                        signUpApiCall(response, userJson);
                     }
                 });
 
@@ -440,3 +383,64 @@ function route(request, response, path, method) {
 }
 
 module.exports = { route };
+
+function signUpApiCall(response, userJson) {
+    const signupOptions = {
+        host: 'localhost',
+        port: 3005,
+        path: '/api/signup',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': userJson.length,
+        },
+    };
+
+    const requestToApi = http.request(signupOptions, function (responseFromApi) {
+        let responseData = '';
+
+        responseFromApi.on('data', function (chunk) {
+            responseData += chunk;
+        });
+
+        responseFromApi.on('end', function () {
+            const responseBody = JSON.parse(responseData);
+            console.log("[router/signup]responseBody from API", responseBody);
+            if (responseBody.registered) {
+                fs.readFile("./pages/login.html", function (error, content) {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        response.writeHead(302, {
+                            "Content-Type": "text/html",
+                            "Location": "/login",
+                        });
+                        response.end(content, "utf-8");
+                    }
+                });
+                console.log("signup successful\n");
+            }
+            else {
+                console.log("signup failed\n");
+                fs.readFile("./pages/signup.html", function (error, content) {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        response.writeHead(200, {
+                            "Content-Type": "text/html",
+                        });
+                        response.end(content, "utf-8");
+                    }
+                });
+            }
+        });
+    });
+
+    requestToApi.on('error', function (error) {
+        console.error(error);
+    });
+
+    requestToApi.write(userJson);
+    requestToApi.end();
+    console.log("ended response\n\n");
+}
