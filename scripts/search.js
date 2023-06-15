@@ -19,10 +19,11 @@ console.log("[searchAfter] queryString: \"" + queryString + "\"");
 searchBarText.value = queryString;
 
 class Card {
-  constructor(id, title, description, tags, image) {
+  constructor(id, title, description, url, tags, image) {
     this.id = id;
     this.title = title;
     this.description = description;
+    this.url = url;
     this.tags = tags;
     this.image = image; /// tbd
   }
@@ -43,7 +44,7 @@ function showAllCards() {
     cardElement.classList.add("card");
     cardElement.classList.add("isHidden");
     cardElement.innerHTML = `
-      <h2>Title: ${card.title}</h2>
+      <a href="${card.url}"  target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: wheat; " ><h2>Title: ${card.title} </h2></a>
       <p>Desc: ${card.description}</p>
       <ul>
         ${card.tags.map((tag) => `<li>${tag}</li>`).join("")}
@@ -67,6 +68,7 @@ request.onload = function () {
                 resource.id,
                 resource.name,
                 resource.description,
+                resource.url,
                 ["tag1", "tag2"],
           )
       );
