@@ -78,12 +78,30 @@ function route(request, response, path, method) {
                 }
             }, 100);
         }
+    } else if (path === "/login") {
+        const cookie = request.headers.cookie;
+        if (cookie) {
+        //     redirecting to account page if already logged in
+            let sessionId = cookie.split("=")[1].trim();
+            console.log("[router/login] Session ID: " + sessionId);
+            response.writeHead(302, {
+                Location: "/account",
+            });
+            response.end();
+        }
+        else {
+            fs.readFile("./pages/login.html", function (error, content) {
+                response.writeHead(200, {"Content-Type": "text/html"});
+                response.end(content, "utf-8");
+            });
+        }
     } else if (routes.includes(path)) {
       fs.readFile("./pages" + path + ".html", function (error, content) {
         response.writeHead(200, { "Content-Type": "text/html" });
         response.end(content, "utf-8");
       });
-    } else if (path.indexOf(".css") !== -1) {
+    }
+    else if (path.indexOf(".css") !== -1) {
       fs.readFile("." + path, function (error, content) {
         response.writeHead(200, { "Content-Type": "text/css" });
         response.end(content, "utf-8");
