@@ -38,7 +38,7 @@ function route(request, response, path, method) {
         }
     } else if (path === "/account") {
         let cookies = request.headers.cookie;
-        if(cookies === undefined || cookies === null || cookies === "") {
+        if(cookies === null || cookies === "") {
             response.writeHead(302, {
                 Location: "/login",
             });
@@ -46,29 +46,37 @@ function route(request, response, path, method) {
         }
         else {
             let sessionId = cookies.split("=")[1].trim();
-            if (sessionId !== null || sessionId !== undefined || sessionId !== "") {
-                const query = "SELECT * FROM users WHERE session_id = ?";
-                const params = [sessionId];
-                DbConn.query(query, params, function (err, rows, fields) {
-                    if (err) throw err;
-                    if (rows.length > 0) {
-                        response.writeHead(200, {"Content-Type": "text/html"});
-                        fs.readFile("./pages/account.html", function (error, content) {
-                            response.end(content, "utf-8");
-                        });
-                    } else {
-                        response.writeHead(302, {
-                            Location: "/login",
-                        });
-                        response.end();
-                    }
-                });
-            } else {
-                response.writeHead(302, {
-                    Location: "/login",
-                });
-                response.end();
-            }
+            console.log("[router/account] Session ID: " + sessionId);
+            // waiting for the database to update in case of a login
+            setTimeout(function () {
+                if(sessionId !== null || sessionId !== "") {
+                    const query = "SELECT * FROM users WHERE session_id = ?";
+                    const params = [sessionId];
+                    DbConn.query(query, params, function (err, rows, fields) {
+                        if (err) throw err;
+                        if (rows.length > 0) {
+                            console.log("[router/account] Found user: " + rows[0].username);
+                            fs.readFile("./pages/account.html", function (error, content) {
+                                response.writeHead(200, {"Content-Type": "text/html"});
+                                response.end(content, "utf-8");
+                            }
+                            );
+                        } else {
+                            console.log("[router/account] No user found");
+                            response.writeHead(302, {
+                                Location: "/login",
+                            });
+                            response.end();
+                        }
+                    });
+                } else {
+                    console.log("[router/account] No session ID");
+                    response.writeHead(302, {
+                        Location: "/login",
+                    });
+                    response.end();
+                }
+            }, 100);
         }
     } else if (routes.includes(path)) {
       fs.readFile("./pages" + path + ".html", function (error, content) {
@@ -150,28 +158,28 @@ function route(request, response, path, method) {
             if (responseBody.authenticated) {
               sessionId = responseBody.sessionId;
 
-
               fs.readFile("./pages/account.html", function (error, content) {
                 if (error) {
                   console.log(error);
+                  throw error;
                 } else {
-
-
                   const oneWeekInSeconds = 7 * 24 * 60 * 60;
                   const expirationDate = new Date(Date.now() + oneWeekInSeconds * 1000);
                   const expires = expirationDate.toUTCString();
 
+                  console.log("[router/login]------------before redirect");
                   response.writeHead(302, {
                     "Content-Type": "text/html",
                     'Set-Cookie': `sessionId=${sessionId}; Expires=${expires}; Path=/;`,
                     "Location": "/account",
                   });
                   response.end(content, "utf-8");
+                  console.log("[router/login]------------after redirect");
                 }
               });
+
               console.log("[login] login successful\n");
-            }
-            else {
+            } else {
               console.log("[login] login failed\n");
               fs.readFile("./pages/login.html", function (error, content) {
                 if (error) {
