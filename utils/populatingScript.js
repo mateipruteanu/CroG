@@ -9,6 +9,7 @@ fs.readFile('data.txt', 'utf8', (err, data) => {
 
     const lines = data.split('\n');
     const resources = [];
+
     class resource {
         constructor(name, url, description, tag, userId) {
             this.name = name;
@@ -40,8 +41,6 @@ fs.readFile('data.txt', 'utf8', (err, data) => {
             resources.push(currentResource);
 
         }
-
-
 
     });
 

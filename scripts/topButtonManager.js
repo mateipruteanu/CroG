@@ -1,25 +1,24 @@
 const leftButton = document.getElementById("leftButton");
 const rightButton = document.getElementById("rightButton");
 
-// Afiseaza butoanele "Account" și "Log Out"
 function showSignedInButtons() {
 
-        const accountButton = document.createElement("button");
-        accountButton.className = "topButton";
-        accountButton.id = "leftButton";
-        accountButton.textContent = "Account";
-        accountButton.type = "submit";
-        accountButton.formAction = "account";
+    const accountButton = document.createElement("button");
+    accountButton.className = "topButton";
+    accountButton.id = "leftButton";
+    accountButton.textContent = "Account";
+    accountButton.type = "submit";
+    accountButton.formAction = "account";
 
-        const logoutButton = document.createElement("button");
-        logoutButton.className = "topButton";
-        logoutButton.id = "rightButton";
-        logoutButton.textContent = "Log Out";
-        logoutButton.type = "submit";
-        logoutButton.formAction = "logout";
+    const logoutButton = document.createElement("button");
+    logoutButton.className = "topButton";
+    logoutButton.id = "rightButton";
+    logoutButton.textContent = "Log Out";
+    logoutButton.type = "submit";
+    logoutButton.formAction = "logout";
 
-        leftButton.replaceWith(accountButton);
-        rightButton.replaceWith(logoutButton);
+    leftButton.replaceWith(accountButton);
+    rightButton.replaceWith(logoutButton);
 
 }
 

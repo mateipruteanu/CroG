@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search</title>
-  <script type="module" src="/scripts/search.js" defer></script>
-  <link rel="stylesheet" href="/styles/style.css">
-  <link rel="stylesheet" href="/styles/search.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <script type="module" src="/scripts/search.js" defer></script>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/search.css">
 </head>
 <body>
-  <div class="mainDiv">
+<div class="mainDiv">
     <div class="topBar">
-      <h1 class="title"
-      onclick="window.location.href='/'">
-      CroG</h1>
-      
-      <div class="searchBarDiv">
-        <form class="searchBarForm">
-          <span><input type="search" id="searchInput" placeholder="Search something..."></span>
+        <h1 class="title"
+            onclick="window.location.href='/'">
+            CroG</h1>
+
+        <div class="searchBarDiv">
+            <form class="searchBarForm">
+                <span><input type="search" id="searchInput" placeholder="Search something..."></span>
+            </form>
+        </div>
+
+        <form class="topButtons">
+            <button id="leftButton" class="topButton" type="submit" formaction="/login">
+                Login
+            </button>
+            <button id="rightButton" class="topButton" type="submit" formaction="/signup">
+                Sign Up
+            </button>
         </form>
-      </div>
-
-      <form class="topButtons">
-        <button id="leftButton" class="topButton" type="submit" formaction="/login">
-          Login
-        </button>
-        <button id="rightButton" class="topButton" type="submit" formaction="/signup">
-          Sign Up
-        </button>
-      </form>
     </div>
-      
+
     <div class="contentDiv">
-      
-      <div id="filtersDiv">
-      </div>
-      
-      <div id="searchResultsDiv">
-        <h1 class="searchText">Search results:</h1>
-        <div id="searchResults">results</div>
-      </div>
+
+        <div id="filtersDiv">
+        </div>
+
+        <div id="searchResultsDiv">
+            <h1 class="searchText">Search results:</h1>
+            <div id="searchResults">results</div>
+        </div>
 
     </div>
-  </div>
+</div>
 </body>
 </html>

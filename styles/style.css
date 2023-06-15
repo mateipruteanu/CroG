@@ -5,75 +5,73 @@ button:focus {
     outline: none;
 }
 
-span:focus
-{
+span:focus {
     outline: none;
 }
 
 
 body {
-  font-family: 'Roboto', sans-serif;
-  background-size: cover;
+    font-family: 'Roboto', sans-serif;
+    background-size: cover;
 
-  /* Background image from: https://bgjar.com */
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='2560' height='1440' preserveAspectRatio='none' viewBox='0 0 2560 1440'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1071%26quot%3b)' fill='none'%3e%3crect width='2560' height='1440' x='0' y='0' fill='rgba(38%2c 70%2c 83%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c904.398C192.745%2c916.613%2c404.039%2c985.916%2c567.244%2c882.648C730.556%2c779.313%2c731.078%2c545.049%2c830.155%2c379.119C945.649%2c185.694%2c1207.797%2c52.917%2c1197.037%2c-172.108C1186.41%2c-394.354%2c951.415%2c-534.115%2c779.72%2c-675.632C630.736%2c-798.43%2c462.71%2c-892.436%2c273.941%2c-932.958C94.596%2c-971.457%2c-91.163%2c-960.642%2c-264.181%2c-899.719C-431.324%2c-840.865%2c-545.461%2c-702.166%2c-686.428%2c-594.794C-869.337%2c-455.476%2c-1150.082%2c-395.124%2c-1215.894%2c-174.819C-1280.893%2c42.765%2c-1130.998%2c271.038%2c-1000.624%2c456.969C-884.173%2c623.045%2c-708.013%2c730.767%2c-522.846%2c813.564C-358.024%2c887.264%2c-180.188%2c892.979%2c0%2c904.398' fill='%231d353e'%3e%3c/path%3e%3cpath d='M2560 2212.06C2713.996 2224.319 2875.072 2215.84 3007.772 2136.746 3142.489 2056.45 3245.453 1924.255 3293.3959999999997 1774.931 3338.861 1633.326 3310.188 1480.145 3263.9700000000003 1338.784 3223.0389999999998 1213.594 3146.0860000000002 1104.546 3046.16 1018.74 2955.6 940.976 2835.957 921.617 2725.49 876.393 2600.033 825.033 2484.612 702.54 2352.983 734.963 2221.742 767.29 2164.775 920.18 2090.1639999999998 1032.885 2024.385 1132.249 1966.132 1234.308 1944.804 1351.548 1922.882 1472.057 1932.262 1593.385 1966.826 1710.894 2005.694 1843.036 2050.599 1980.0320000000002 2155.813 2068.927 2267.247 2163.076 2414.578 2200.484 2560 2212.06' fill='%23305868'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1071'%3e%3crect width='2560' height='1440' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+    /* Background image from: https://bgjar.com */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='2560' height='1440' preserveAspectRatio='none' viewBox='0 0 2560 1440'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1071%26quot%3b)' fill='none'%3e%3crect width='2560' height='1440' x='0' y='0' fill='rgba(38%2c 70%2c 83%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c904.398C192.745%2c916.613%2c404.039%2c985.916%2c567.244%2c882.648C730.556%2c779.313%2c731.078%2c545.049%2c830.155%2c379.119C945.649%2c185.694%2c1207.797%2c52.917%2c1197.037%2c-172.108C1186.41%2c-394.354%2c951.415%2c-534.115%2c779.72%2c-675.632C630.736%2c-798.43%2c462.71%2c-892.436%2c273.941%2c-932.958C94.596%2c-971.457%2c-91.163%2c-960.642%2c-264.181%2c-899.719C-431.324%2c-840.865%2c-545.461%2c-702.166%2c-686.428%2c-594.794C-869.337%2c-455.476%2c-1150.082%2c-395.124%2c-1215.894%2c-174.819C-1280.893%2c42.765%2c-1130.998%2c271.038%2c-1000.624%2c456.969C-884.173%2c623.045%2c-708.013%2c730.767%2c-522.846%2c813.564C-358.024%2c887.264%2c-180.188%2c892.979%2c0%2c904.398' fill='%231d353e'%3e%3c/path%3e%3cpath d='M2560 2212.06C2713.996 2224.319 2875.072 2215.84 3007.772 2136.746 3142.489 2056.45 3245.453 1924.255 3293.3959999999997 1774.931 3338.861 1633.326 3310.188 1480.145 3263.9700000000003 1338.784 3223.0389999999998 1213.594 3146.0860000000002 1104.546 3046.16 1018.74 2955.6 940.976 2835.957 921.617 2725.49 876.393 2600.033 825.033 2484.612 702.54 2352.983 734.963 2221.742 767.29 2164.775 920.18 2090.1639999999998 1032.885 2024.385 1132.249 1966.132 1234.308 1944.804 1351.548 1922.882 1472.057 1932.262 1593.385 1966.826 1710.894 2005.694 1843.036 2050.599 1980.0320000000002 2155.813 2068.927 2267.247 2163.076 2414.578 2200.484 2560 2212.06' fill='%23305868'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1071'%3e%3crect width='2560' height='1440' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
 }
 
 .title {
-  transition: .5s;
-  font-family: 'Roboto', sans-serif;
-  color: #e9c46a;
-  cursor:default;
+    transition: .5s;
+    font-family: 'Roboto', sans-serif;
+    color: #e9c46a;
+    cursor: default;
 }
 
 .title:hover {
-  transition: .5s;
+    transition: .5s;
 }
 
 #searchInput {
-  border: 0px;
-  border-radius: 5px;
-  box-sizing: border-box;
-  background-image: url("/resources/search-icon.svg");
-  background-repeat: no-repeat;
-  background-color: #e5dabe;
+    border: 0px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-image: url("/resources/search-icon.svg");
+    background-repeat: no-repeat;
+    background-color: #e5dabe;
 }
-
 
 
 .topButton {
-  transition: .5s;
-  font-size: 25px;
-  padding: 14px 20px;
-  margin: 5px;
-  margin-left: 11px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #e9c46a;
-  color: #264653;
-  box-shadow: 1px 1px #e76f51,
-                2px 2px #e76f51,
-                3px 3px #e76f51,
-                4px 4px #e76f51,
-                5px 5px #e76f51,
-                6px 6px #e76f51,
-                7px 7px #e76f51,
-                8px 8px #e76f51,
-                9px 9px #e76f51,
-                10px 10px #e76f51,
-                11px 11px #e76f51;
+    transition: .5s;
+    font-size: 25px;
+    padding: 14px 20px;
+    margin: 5px;
+    margin-left: 11px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #e9c46a;
+    color: #264653;
+    box-shadow: 1px 1px #e76f51,
+    2px 2px #e76f51,
+    3px 3px #e76f51,
+    4px 4px #e76f51,
+    5px 5px #e76f51,
+    6px 6px #e76f51,
+    7px 7px #e76f51,
+    8px 8px #e76f51,
+    9px 9px #e76f51,
+    10px 10px #e76f51,
+    11px 11px #e76f51;
 }
 
 .topButton:hover {
-  transition: .5s;
-  transform: translate(5px, 5px);
-  box-shadow: 1px 1px #e76f51,
-                2px 2px #e76f51,
-                3px 3px #e76f51,
-                4px 4px #e76f51,
-                5px 5px #e76f51,
-                6px 6px #e76f51;
-                transition: .5s;
+    transition: .5s;
+    transform: translate(5px, 5px);
+    box-shadow: 1px 1px #e76f51,
+    2px 2px #e76f51,
+    3px 3px #e76f51,
+    4px 4px #e76f51,
+    5px 5px #e76f51,
+    6px 6px #e76f51;
+    transition: .5s;
 }
 

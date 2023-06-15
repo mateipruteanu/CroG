@@ -17,9 +17,9 @@ const server = http.createServer(function (req, res) {
         });
 
         req.on('end', () => {
-           console.log("[api/addResource] Received: ", body);
-           const data = JSON.parse(body);
-           const resourceObject = {
+            console.log("[api/addResource] Received: ", body);
+            const data = JSON.parse(body);
+            const resourceObject = {
                 name: data.name,
                 description: data.description,
                 tags: data.tags,
@@ -27,21 +27,21 @@ const server = http.createServer(function (req, res) {
                 link: data.link,
                 language: data.language,
                 userId: data.userId
-           };
-              console.log("[api/addResource] Resource object: ", resourceObject);
-              const query = "INSERT INTO resources (name, description, category, url, language, user_id) VALUES (?, ?, ?, ?, ?, ?)";
-              const params = [resourceObject.name, resourceObject.description, resourceObject.category, resourceObject.link, resourceObject.language, resourceObject.userId];
-               try {
-                   dbConn.query(query, params, function (err, rows, fields) {
-                       if (err) throw err;
-                       console.log("[api/addResource] Added resource");
-                       res.writeHead(200, { 'Content-Type': 'application/json' });
-                       res.end(JSON.stringify({added: true}));
-                   });
-               } catch (err) {
-                     console.log("[api/addResource] Error: ", err);
-                     res.end(JSON.stringify({added: false}));
-               }
+            };
+            console.log("[api/addResource] Resource object: ", resourceObject);
+            const query = "INSERT INTO resources (name, description, category, url, language, user_id) VALUES (?, ?, ?, ?, ?, ?)";
+            const params = [resourceObject.name, resourceObject.description, resourceObject.category, resourceObject.link, resourceObject.language, resourceObject.userId];
+            try {
+                dbConn.query(query, params, function (err, rows, fields) {
+                    if (err) throw err;
+                    console.log("[api/addResource] Added resource");
+                    res.writeHead(200, {'Content-Type': 'application/json'});
+                    res.end(JSON.stringify({added: true}));
+                });
+            } catch (err) {
+                console.log("[api/addResource] Error: ", err);
+                res.end(JSON.stringify({added: false}));
+            }
 
         });
 

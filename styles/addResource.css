@@ -3,8 +3,7 @@ body {
     background: linear-gradient(to top, #B0C4DE 0%, #90EE90 100%);
 }
 
-span:focus
-{
+span:focus {
     outline: none;
 }
 
@@ -16,14 +15,14 @@ span:focus
 }
 
 .topBar {
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
 }
 
-.topButtons {  
+.topButtons {
     display: flex;
     flex-direction: row;
 }
@@ -37,21 +36,21 @@ span:focus
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 6px 6px;    
+    box-shadow: 6px 6px;
 }
 
 .searchBarDiv {
     flex-grow: 1;
-  }
-  
-  .searchBarForm {
+}
+
+.searchBarForm {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-  }
+}
 
-  #searchInput {
+#searchInput {
     width: 60vw;
     height: 60px;
     padding: 10px;
@@ -60,17 +59,17 @@ span:focus
     background-position: 15px 15px;
     background-size: 30px 30px;
     box-shadow: 1px 1px #e76f51,
-                2px 2px #e76f51,
-                3px 3px #e76f51,
-                4px 4px #e76f51,
-                5px 5px #e76f51,
-                6px 6px #e76f51,
-                7px 7px #e76f51,
-                8px 8px #e76f51,
-                9px 9px #e76f51,
-                10px 10px #e76f51,
-                11px 11px #e76f51;
-  }
+    2px 2px #e76f51,
+    3px 3px #e76f51,
+    4px 4px #e76f51,
+    5px 5px #e76f51,
+    6px 6px #e76f51,
+    7px 7px #e76f51,
+    8px 8px #e76f51,
+    9px 9px #e76f51,
+    10px 10px #e76f51,
+    11px 11px #e76f51;
+}
 
 .contentDiv {
     width: 100%;
@@ -80,91 +79,91 @@ span:focus
 }
 
 h1 {
-	text-align: left;
+    text-align: left;
     font-family: 'Roboto', sans-serif;
     color: #ccc;
-    padding-left:30px;
+    padding-left: 30px;
 
 }
 
 form {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 label {
     font-family: 'Roboto', sans-serif;
-	margin-top: 10px;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
 input[type=text] {
-	border: 1px solid #2d3142c1;
+    border: 1px solid #2d3142c1;
 }
 
 input[type=submit] {
-	color: #2d3142c1;
-	padding: 10px;
-	margin-top: 10px;
-	border-radius: 5px;
-	cursor: pointer;
-    width:15vw;
+    color: #2d3142c1;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 15vw;
     border: 1px solid #2d3142c1;
-    
+
 }
 
 .title {
     font-size: 50px;
-      text-shadow: 1px 1px #e76f51,
-                  2px 2px #e76f51,
-                  3px 3px #e76f51,
-                  4px 4px #e76f51,
-                  5px 5px #e76f51,
-                  6px 6px #e76f51;
-  }
-  
-  .title:hover {
+    text-shadow: 1px 1px #e76f51,
+    2px 2px #e76f51,
+    3px 3px #e76f51,
+    4px 4px #e76f51,
+    5px 5px #e76f51,
+    6px 6px #e76f51;
+}
+
+.title:hover {
     transform: translate(-5px, -5px);
     text-shadow: 1px 1px #e76f51,
-                  2px 2px #e76f51,
-                  3px 3px #e76f51,
-                  4px 4px #e76f51,
-                  5px 5px #e76f51,
-                  6px 6px #e76f51,
-                  7px 7px #e76f51,
-                  8px 8px #e76f51,
-                  9px 9px #e76f51,
-                  10px 10px #e76f51,
-                  11px 11px #e76f51;
-    
-  }
+    2px 2px #e76f51,
+    3px 3px #e76f51,
+    4px 4px #e76f51,
+    5px 5px #e76f51,
+    6px 6px #e76f51,
+    7px 7px #e76f51,
+    8px 8px #e76f51,
+    9px 9px #e76f51,
+    10px 10px #e76f51,
+    11px 11px #e76f51;
 
-  .formRow{
+}
+
+.formRow {
     background-color: #e5dabe;
     color: #2d3142c1;
     border-radius: 6px;
     box-shadow: 0 1px 3px #2D3142;
     margin-bottom: 16px;
     padding: 16px;
-  }
+}
 
-.addResourceForm{
+.addResourceForm {
     background-color: #e9c46a;
-    width:80vw;
+    width: 80vw;
     border-radius: 10px;
     padding: 10px;
     text-shadow: 1px 1px #e76f51,
-                2px 2px #e76f51,
-                3px 3px #e76f51,
-                4px 4px #e76f51,
-                5px 5px #e76f51,
-                6px 6px #e76f51;
-    
+    2px 2px #e76f51,
+    3px 3px #e76f51,
+    4px 4px #e76f51,
+    5px 5px #e76f51,
+    6px 6px #e76f51;
+
 }
 
-.addResourceDiv{
+.addResourceDiv {
     display: flex;
     flex-direction: column;
     align-self: center;
     justify-self: center;
-  }
+}

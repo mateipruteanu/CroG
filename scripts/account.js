@@ -22,7 +22,7 @@ let apiUrl = "http://localhost:3005/api/getUserBySessionId?sessionId=" + session
 
 request.open("GET", apiUrl, true);
 request.onload = function () {
-    if(request.status === 200) {
+    if (request.status === 200) {
         let jsonData = JSON.parse(request.responseText);
         console.log("[account] jsonData", jsonData);
         let user = jsonData.user;
@@ -31,8 +31,7 @@ request.onload = function () {
 
         usernameElement.value = username;
         emailElement.value = email;
-    }
-    else {
+    } else {
         console.log("[account] request.status", request.status);
     }
 };

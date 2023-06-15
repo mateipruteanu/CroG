@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CroG</title>
-  <script type="module" src="/scripts/account.js" defer></script>
-  <link rel="stylesheet" href="/styles/account.css">
-  <link rel="stylesheet" href="/styles/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CroG</title>
+    <script type="module" src="/scripts/account.js" defer></script>
+    <link rel="stylesheet" href="/styles/account.css">
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
-    <div class="mainDiv">
-      <div class="topBar">
+<div class="mainDiv">
+    <div class="topBar">
         <h1 class="title"
-        onclick="window.location.href='/'">
-        CroG</h1>
-        
+            onclick="window.location.href='/'">
+            CroG</h1>
+
         <div class="searchBarDiv">
-          <form class="searchBarForm">
-            <span><input type="search" id="searchInput" placeholder="Search something..."></span>
-          </form>
+            <form class="searchBarForm">
+                <span><input type="search" id="searchInput" placeholder="Search something..."></span>
+            </form>
         </div>
 
-          <form class="topButtons">
-              <button id="leftButton" class="topButton" type="submit" formaction="/login">
-                  Login
-              </button>
-              <button id="rightButton" class="topButton" type="submit" formaction="/signup">
-                  Sign Up
-              </button>
-          </form>
-      </div>
-          
-        <div class="contentDiv">
-          <div class="accountDiv">
+        <form class="topButtons">
+            <button id="leftButton" class="topButton" type="submit" formaction="/login">
+                Login
+            </button>
+            <button id="rightButton" class="topButton" type="submit" formaction="/signup">
+                Sign Up
+            </button>
+        </form>
+    </div>
+
+    <div class="contentDiv">
+        <div class="accountDiv">
             <h1>Account Information</h1>
             <form class="accountForm">
                 <input class="formRow" type="text" id="name" name="name" placeholder="Name" required>
-                
+
                 <input class="formRow" type="email" id="email" name="email" placeholder="Email" required>
 
                 <input class="formRow" type="password" id="password" name="password" placeholder="Password" required>
 
-                <input class="formRow" type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password" required>
-                
+                <input class="formRow" type="password" id="confirm-password" name="confirm-password"
+                       placeholder="Confirm password" required>
+
                 <input class="topButton" type="submit" value="Update">
 
                 <input class="topButton" type="submit" value="Add a resource" formaction="addresource">
             </form>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
 </body>
 </html>
-

@@ -7,15 +7,14 @@ const fs = require("fs");
 const queryString = require("querystring");
 
 
-
 let server = http.createServer(function (request, response) {
-  let path = request.url;
-  if (path.indexOf("?") !== -1) {
-    path = path.substring(0, path.indexOf("?"));
-  }
+    let path = request.url;
+    if (path.indexOf("?") !== -1) {
+        path = path.substring(0, path.indexOf("?"));
+    }
 
-  router.route(request, response, path, request.method);
-  let cookies = request.headers.cookie;
+    router.route(request, response, path, request.method);
+    let cookies = request.headers.cookie;
 
 });
 
