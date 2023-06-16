@@ -47,6 +47,45 @@ const server = http.createServer(function (req, res) {
 
 
     }
+
+    if (req.method === 'DELETE' && req.url.includes('/api/deleteResource')) {
+        let resourceId='';
+        resourceId=req.url.split('?')[1].split('=')[1].trim();
+        console.log("[api/deleteResource] Received: ", resourceId);
+            console.log("[api/deleteResource] Attempting delete...");
+            const query = "DELETE FROM resources WHERE id = ?";
+            const params = [resourceId];
+            try {
+                dbConn.query(query, params, function (err, rows, fields) {
+                    if (err) throw err;
+                    console.log("[api/deleteResource] Deleted resource");
+                    res.writeHead(200, {'Content-Type': 'application/json'});
+                    res.end(JSON.stringify({deleted: true}));
+                });
+            } catch (err) {
+                console.log("[api/deleteResource] Error: ", err);
+                res.writehead(200, {'Content-Type': 'application/json'});
+                res.end(JSON.stringify({deleted: false}));
+            }
+    }
 });
 
 server.listen(3006, () => console.log('Managerul de resurse ruleaza pe portul 3006'));
+
+function checkResourceId(resourceId){
+    let received = false;
+    const query = "SELECT * FROM resources WHERE id = ?";
+    const params = [resourceId];
+        dbConn.query(query, params, function (err, rows, fields) {
+            if (err) throw err;
+            console.log("[api/deleteResource] Found: ", rows);
+            if (rows.length > 0) {
+                console.log("[api/deleteResource] Resource exists");
+                received = true;
+            } else {
+                console.log("[api/deleteResource] Resource does not exist");
+                received = false;
+            }
+        });
+    return received;
+}
