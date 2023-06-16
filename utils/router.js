@@ -5,7 +5,6 @@ const getPage = require("./getPage.js");
 
 
 function route(request, response, path, method) {
-    console.log("[router]" + method + ": " + path + "\n");
 
     if (method === "GET") {
         if (path === "/") {

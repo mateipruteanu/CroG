@@ -58,6 +58,7 @@ const queryObject = {
 }
 
 const queryStringJSON = JSON.stringify(queryObject);
+
 function sendPostRequest(queryStringJSON) {
     request.open("POST", "http://localhost:3007/api/getResourcesByNameOrTagsOrDescription", true);
     request.onload = function () {
@@ -65,15 +66,7 @@ function sendPostRequest(queryStringJSON) {
         console.log("[postRequest] :" + JSON.stringify(jsonData));
         if (request.status >= 200 && request.status < 400) {
             for (let resource of jsonData) {
-                cards.push(
-                    new Card(
-                        resource.resource_id,
-                        resource.name,
-                        resource.description,
-                        resource.url,
-                        [resource.tag_name]
-                    )
-                );
+                cards.push(new Card(resource.resource_id, resource.name, resource.description, resource.url, [resource.tag_name]));
             }
             showAllCards();
             searchForCards();
@@ -93,15 +86,7 @@ function sendGetAllResourcesRequest() {
         console.log("[getAll] :" + JSON.stringify(jsonData));
         if (request.status >= 200 && request.status < 400) {
             for (let resource of jsonData) {
-                cards.push(
-                    new Card(
-                        resource.resource_id,
-                        resource.name,
-                        resource.description,
-                        resource.url,
-                        [resource.tag_name]
-                    )
-                );
+                cards.push(new Card(resource.resource_id, resource.name, resource.description, resource.url, [resource.tag_name]));
             }
             showAllCards();
             searchForCards();
@@ -114,10 +99,9 @@ function sendGetAllResourcesRequest() {
     request.send();
 }
 
-if(queryString !== "" || queryString !== null) {
+if (queryString !== "" || queryString !== null) {
     sendPostRequest(queryStringJSON);
-}
-else {
+} else {
     sendGetAllResourcesRequest();
 }
 
@@ -151,18 +135,7 @@ class filter {
     }
 }
 
-let filters = [
-    new filter("Language", ["C++", "JavaScript", "Python", "Java"]),
-    new filter("Operating System", ["Linux", "Cross-Platform", "Win", "Mac"]),
-    new filter("Other", [
-        "Image",
-        "Socket",
-        "React",
-        "Framework",
-        "Coding",
-        "Creative",
-    ]),
-];
+let filters = [new filter("Language", ["C++", "JavaScript", "Python", "Java"]), new filter("Operating System", ["Linux", "Cross-Platform", "Win", "Mac"]), new filter("Other", ["Image", "Socket", "React", "Framework", "Coding", "Creative",]),];
 
 let filterDiv = document.getElementById("filtersDiv");
 filterDiv.innerHTML = "";
@@ -176,16 +149,13 @@ function showAllFilters() {
       <h2>${filter.name}</h2>
       <div class="filterTags">
         ${filter.tags
-            .map(
-                (tag) =>
-                    `
+            .map((tag) => `
               <div class="filterTag">
                 <label class="filterLabel" for="${tag}">${tag}</label>
                 <input class = "checkbox" type="checkbox" id="${tag}" name="${tag}" value="${tag}">
                 <br>
               </div>
-              `
-            )
+              `)
             .join("")}
       </div>
     `;
@@ -212,11 +182,9 @@ saveButton.addEventListener("click", () => {
             let documentCards = document.querySelectorAll(".card");
             console.log("number of cards:" + documentCards.length)
             for (let documentCard of documentCards) {
-                if(documentCard.innerText.toUpperCase().split(" ").map(
-                    (word) => {
-                        return word.toUpperCase() === checkbox.value.toUpperCase();
-                    }
-                ).includes(true)) {
+                if (documentCard.innerText.toUpperCase().split(" ").map((word) => {
+                    return word.toUpperCase() === checkbox.value.toUpperCase();
+                }).includes(true)) {
                     documentCard.classList.remove("isHidden");
                 } else {
                     documentCard.classList.add("isHidden");
@@ -236,7 +204,7 @@ saveButton.addEventListener("click", () => {
 });
 
 
-searchBarText.addEventListener("keypress", function (e)  {
+searchBarText.addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
         e.preventDefault();
         const query = encodeURIComponent(searchBarText.value);

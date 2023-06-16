@@ -1,10 +1,5 @@
 let http = require("http");
-let path = require("path");
 const router = require("./utils/router.js");
-const DbConn = require("./utils/DbConn.js");
-const requestFunc = require("request");
-const fs = require("fs");
-const queryString = require("querystring");
 
 
 let server = http.createServer(function (request, response) {

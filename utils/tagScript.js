@@ -1,5 +1,5 @@
 const fs = require('fs');
-const dbConn = require('../utils/DbConn');
+const dbConn = require('./databaseConnection');
 
 fs.readFile('data.txt', 'utf8', (err, data) => {
     if (err) {

@@ -1,6 +1,6 @@
 const http = require('http');
 const fs = require('fs');
-const dbConn = require('../utils/DbConn');
+const dbConn = require('../utils/databaseConnection');
 const querystring = require('querystring');
 
 const server = http.createServer(function (req, res) {
@@ -49,12 +49,12 @@ const server = http.createServer(function (req, res) {
     }
 
     if (req.method === 'POST' && req.url.includes('/api/deleteResource')) {
-        let resourceId='';
+        let resourceId = '';
         req.on('data', (chunk) => {
             resourceId += chunk;
         });
         req.on('end', () => {
-            parsedId=JSON.parse(resourceId);
+            parsedId = JSON.parse(resourceId);
             console.log("[api/deleteResource] Attempting delete...");
             const query = "DELETE FROM resources WHERE id = ?";
             const params = [parsedId.resourceId];
@@ -76,20 +76,20 @@ const server = http.createServer(function (req, res) {
 
 server.listen(3006, () => console.log('Managerul de resurse ruleaza pe portul 3006'));
 
-function checkResourceId(resourceId){
+function checkResourceId(resourceId) {
     let received = false;
     const query = "SELECT * FROM resources WHERE id = ?";
     const params = [resourceId];
-        dbConn.query(query, params, function (err, rows, fields) {
-            if (err) throw err;
-            console.log("[api/deleteResource] Found: ", rows);
-            if (rows.length > 0) {
-                console.log("[api/deleteResource] Resource exists");
-                received = true;
-            } else {
-                console.log("[api/deleteResource] Resource does not exist");
-                received = false;
-            }
-        });
+    dbConn.query(query, params, function (err, rows, fields) {
+        if (err) throw err;
+        console.log("[api/deleteResource] Found: ", rows);
+        if (rows.length > 0) {
+            console.log("[api/deleteResource] Resource exists");
+            received = true;
+        } else {
+            console.log("[api/deleteResource] Resource does not exist");
+            received = false;
+        }
+    });
     return received;
 }

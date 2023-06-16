@@ -28,11 +28,10 @@ request.onload = function () {
 request.send();
 
 let searchBarText = document.getElementById("searchInput");
-searchBarText.addEventListener("keypress", function (e)  {
+searchBarText.addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
         e.preventDefault();
         const query = encodeURIComponent(searchBarText.value);
         window.location.href = "/search?query=" + query;
     }
 });
-

@@ -1,9 +1,4 @@
-var http = require("http");
-var fs = require("fs");
-const DbConn = require("./DbConn.js");
-const routes = require("./routes.js");
-const requestFunc = require("request");
-
+let http = require("http");
 
 function getUserIdBySessionId(sessionId) {
     return new Promise(function (resolve, reject) {

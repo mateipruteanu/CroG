@@ -1,7 +1,7 @@
 const http = require("http");
 const fs = require("fs");
 const queryString = require("querystring");
-const DbConn = require("./DbConn.js");
+const DbConn = require("./databaseConnection.js");
 const getUserIdBySessionId = require("./IdRequestFunction.js");
 const {parse} = require("querystring");
 
@@ -30,13 +30,8 @@ function addResource(request, response) {
         const resourceJson = JSON.stringify(resourceObject);
         console.log("[/addresource] resourceJson", resourceJson);
         const options = {
-            host: 'localhost',
-            port: 3006,
-            path: '/api/addResource',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Content-Length': resourceJson.length,
+            host: 'localhost', port: 3006, path: '/api/addResource', method: 'POST', headers: {
+                'Content-Type': 'application/json', 'Content-Length': resourceJson.length,
             },
         };
         const requestToApi = http.request(options, function (responseFromApi) {
@@ -55,8 +50,7 @@ function addResource(request, response) {
                             console.log(error);
                         } else {
                             response.writeHead(302, {
-                                "Content-Type": "text/html",
-                                "Location": "/account",
+                                "Content-Type": "text/html", "Location": "/account",
                             });
                             response.end(content, "utf-8");
                         }
@@ -86,12 +80,12 @@ function addResource(request, response) {
         requestToApi.end();
 
         response.writeHead(302, {
-            "Content-Type": "text/html",
-            "Location": "/account",
+            "Content-Type": "text/html", "Location": "/account",
         });
         response.end();
     });
 }
+
 function signup(request, response) {
     let body = "";
     request.on("data", function (data) {
@@ -111,9 +105,7 @@ function signup(request, response) {
 
         if (password === repeat_password) {
             const userObject = {
-                email: email,
-                username: username,
-                password: password,
+                email: email, username: username, password: password,
             };
 
             const userJson = JSON.stringify(userObject);
@@ -161,6 +153,7 @@ function signup(request, response) {
 
     });
 }
+
 function login(request, response) {
     let sessionId = "";
     console.log("trying to login");
@@ -175,21 +168,15 @@ function login(request, response) {
         const password = decodeURIComponent(pairs[1].split("=")[1]);
 
         const userObject = {
-            username: username,
-            password: password,
+            username: username, password: password,
         };
 
         const userJson = JSON.stringify(userObject);
         console.log("[loginAppJS]userJson: " + userJson + "\n")
 
         const options = {
-            host: 'localhost',
-            port: 3005,
-            path: '/api/login',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Content-Length': userJson.length,
+            host: 'localhost', port: 3005, path: '/api/login', method: 'POST', headers: {
+                'Content-Type': 'application/json', 'Content-Length': userJson.length,
             },
         };
 
@@ -256,13 +243,8 @@ function login(request, response) {
 
 function signUpApiCall(response, userJson) {
     const signupOptions = {
-        host: 'localhost',
-        port: 3005,
-        path: '/api/signup',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': userJson.length,
+        host: 'localhost', port: 3005, path: '/api/signup', method: 'POST', headers: {
+            'Content-Type': 'application/json', 'Content-Length': userJson.length,
         },
     };
 
@@ -282,8 +264,7 @@ function signUpApiCall(response, userJson) {
                         console.log(error);
                     } else {
                         response.writeHead(302, {
-                            "Content-Type": "text/html",
-                            "Location": "/login",
+                            "Content-Type": "text/html", "Location": "/login",
                         });
                         response.end(content, "utf-8");
                     }
@@ -313,6 +294,7 @@ function signUpApiCall(response, userJson) {
     requestToApi.end();
     console.log("ended response\n\n");
 }
+
 function logout(request, response) {
     let cookies = request.headers.cookie;
     if (cookies) {
@@ -324,8 +306,7 @@ function logout(request, response) {
             console.log("[router/logout] Deleted session ID");
         });
         response.writeHead(302, {
-            Location: "/",
-            "Set-Cookie": "sessionId=; Expires=Thu, 01 Jan 1970 00:00:00 GMT",
+            Location: "/", "Set-Cookie": "sessionId=; Expires=Thu, 01 Jan 1970 00:00:00 GMT",
         });
         response.end();
     } else {
@@ -347,11 +328,7 @@ function deleteResource(request, response) {
         let parsedResult = JSON.stringify(parsedData);
         console.log("[/deleteresource] parsedData", parsedData);
         const options = {
-            host: "localhost",
-            port: 3006,
-            path: "/api/deleteResource",
-            method: "POST",
-            headers: {
+            host: "localhost", port: 3006, path: "/api/deleteResource", method: "POST", headers: {
                 "Content-Type": "application/json",
             },
         };
@@ -364,18 +341,14 @@ function deleteResource(request, response) {
 
             responseFromApi.on("end", function () {
                 const responseBody = JSON.parse(responseData);
-                console.log(
-                    "[/deleteresource] responseBody from API",
-                    responseBody
-                );
+                console.log("[/deleteresource] responseBody from API", responseBody);
                 if (responseBody.deleted) {
                     fs.readFile("./pages/account.html", function (error, content) {
                         if (error) {
                             console.log(error);
                         } else {
                             response.writeHead(302, {
-                                "Content-Type": "text/html",
-                                Location: "/account",
+                                "Content-Type": "text/html", Location: "/account",
                             });
                             response.end(content, "utf-8");
                         }
@@ -403,8 +376,7 @@ function deleteResource(request, response) {
         requestToApi.end();
 
         response.writeHead(302, {
-            "Content-Type": "text/html",
-            Location: "/account",
+            "Content-Type": "text/html", Location: "/account",
         });
         response.end();
     });

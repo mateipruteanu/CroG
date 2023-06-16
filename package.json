@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "authentificationService": "nodemon myservice/authentificationService.js",
-    "resourceManagerService": "nodemon myservice/resourceManagerService.js",
-    "getAllResources": "nodemon myservice/resourceGetService.js",
+    "authentificationService": "nodemon services/authentificationService.js",
+    "resourceManagerService": "nodemon services/resourceManagerService.js",
+    "getAllResources": "nodemon services/resourceGetService.js",
     "all": "concurrently \"npm run dev\" \"npm run authentificationService\" \"npm run resourceManagerService\" \"npm run getAllResources\""
   },
   "author": "",

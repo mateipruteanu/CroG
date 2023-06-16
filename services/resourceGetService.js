@@ -1,7 +1,6 @@
 const http = require('http');
-const dbConn = require('../utils/DbConn');
+const dbConn = require('../utils/databaseConnection');
 const {queryDictionary} = require('../utils/queryDictionary');
-
 
 const server = http.createServer((req, res) => {
 
@@ -36,7 +35,7 @@ const server = http.createServer((req, res) => {
                     importantWordsArray.push(word);
                 }
             }
-            if(importantWordsArray.length === 0) {
+            if (importantWordsArray.length === 0) {
                 importantWordsArray = [" "];
             }
             console.log("[resourceGetService/getResourcesByNameOrTagsOrDescription] importantWordsArray: " + importantWordsArray)
@@ -47,10 +46,11 @@ const server = http.createServer((req, res) => {
                 queryArray.push(`resources.description LIKE '%${word}%'`);
                 queryArray.push(`tags.tag_name LIKE '%${word}%'`);
             }
-            const query = `SELECT * FROM resources
-                                            JOIN resource_tag ON resources.id = resource_tag.resource_id
-                                            JOIN tags ON resource_tag.tag_id = tags.id
-                                        WHERE ${queryArray.join(" OR ")}`;
+            const query = `SELECT *
+                           FROM resources
+                                    JOIN resource_tag ON resources.id = resource_tag.resource_id
+                                    JOIN tags ON resource_tag.tag_id = tags.id
+                           WHERE ${queryArray.join(" OR ")}`;
             console.log("[resourceGetService/getResourcesByNameOrTagsOrDescription] query: " + query);
 
             dbConn.query(query, (err, result) => {

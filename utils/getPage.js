@@ -1,5 +1,5 @@
 const fs = require("fs");
-const DbConn = require("./DbConn.js");
+const DbConn = require("./databaseConnection.js");
 
 
 function loginPage(request, response) {
@@ -40,10 +40,9 @@ function accountPage(request, response) {
                     if (rows.length > 0) {
                         console.log("[router/account] Found user: " + rows[0].username);
                         fs.readFile("./pages/account.html", function (error, content) {
-                                response.writeHead(200, {"Content-Type": "text/html"});
-                                response.end(content, "utf-8");
-                            }
-                        );
+                            response.writeHead(200, {"Content-Type": "text/html"});
+                            response.end(content, "utf-8");
+                        });
                     } else {
                         console.log("[router/account] No user found");
                         response.writeHead(302, {
