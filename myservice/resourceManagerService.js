@@ -48,7 +48,7 @@ const server = http.createServer(function (req, res) {
 
     }
 
-    if (req.method === 'POST' && req.url.includes('/api/deleteResource')) {
+    if (req.method === 'GET' && req.url.includes('/api/deleteResource')) {
         let resourceId='';
         resourceId=req.url.split('?')[1].split('=')[1].trim();
         console.log("[api/deleteResource] Received: ", resourceId);
