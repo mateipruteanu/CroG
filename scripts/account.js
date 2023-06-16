@@ -2,16 +2,6 @@ import {topButtonManager} from "/scripts/topButtonManager.js";
 
 topButtonManager();
 
-// let queryString = window.location.search;
-// console.log(queryString);
-//
-// let searchBarText = document.getElementById("searchInput");
-//
-// queryString = queryString.replace("?search=", "");
-// queryString = decodeURIComponent(queryString);
-//
-// searchBarText.textContent = queryString;
-
 let usernameElement = document.querySelector("#name");
 let emailElement = document.querySelector("#email");
 
@@ -36,3 +26,13 @@ request.onload = function () {
     }
 };
 request.send();
+
+let searchBarText = document.getElementById("searchInput");
+searchBarText.addEventListener("keypress", function (e)  {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        const query = encodeURIComponent(searchBarText.value);
+        window.location.href = "/search?query=" + query;
+    }
+});
+

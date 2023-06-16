@@ -8,13 +8,7 @@ let searchBarText = document.getElementById("searchInput");
 
 queryString = queryString.replace("?query=", "");
 queryString = decodeURIComponent(queryString);
-console.log("[searchBeginning] queryString: \"" + queryString + "\"");
-
-if (queryString === undefined || queryString === null || queryString === "") {
-    queryString = " ";
-}
-
-console.log("[searchAfter] queryString: \"" + queryString + "\"");
+console.log("[search.js] queryString: " + queryString);
 
 searchBarText.value = queryString;
 
@@ -25,7 +19,7 @@ class Card {
         this.description = description;
         this.url = url;
         this.tags = tags;
-        this.image = image; /// tbd
+        this.image = image;
     }
 }
 
@@ -33,6 +27,7 @@ let cards = [];
 
 let searchResults = document.getElementById("searchResults");
 searchResults.innerHTML = "";
+
 
 function showAllCards() {
     const searchResults = document.getElementById("searchResults");
@@ -58,41 +53,77 @@ function showAllCards() {
 let jsonData;
 let request = new XMLHttpRequest();
 
-request.open("GET", "http://localhost:3007/api/getResources", true);
-request.onload = function () {
-    jsonData = JSON.parse(this.response);
-    console.log("data :" + JSON.stringify(jsonData));
-    if (request.status >= 200 && request.status < 400) {
-        for (let resource of jsonData) {
-            cards.push(
-                new Card(
-                    resource.resource_id,
-                    resource.name,
-                    resource.description,
-                    resource.url,
-                    [resource.tag_name]
-                )
-            );
+const queryObject = {
+    query: queryString
+}
+
+const queryStringJSON = JSON.stringify(queryObject);
+function sendPostRequest(queryStringJSON) {
+    request.open("POST", "http://localhost:3007/api/getResourcesByNameOrTagsOrDescription", true);
+    request.onload = function () {
+        jsonData = JSON.parse(this.response);
+        console.log("[postRequest] :" + JSON.stringify(jsonData));
+        if (request.status >= 200 && request.status < 400) {
+            for (let resource of jsonData) {
+                cards.push(
+                    new Card(
+                        resource.resource_id,
+                        resource.name,
+                        resource.description,
+                        resource.url,
+                        [resource.tag_name]
+                    )
+                );
+            }
+            showAllCards();
+            searchForCards();
+        } else {
+            console.log("error");
+
         }
-        showAllCards();
-        searchForCards();
-    } else {
-        console.log("error");
 
-    }
+    };
+    request.send(queryStringJSON);
+}
 
-};
-request.send();
-console.log("data :" + JSON.stringify(jsonData));
+function sendGetAllResourcesRequest() {
+    request.open("GET", "http://localhost:3007/api/getResources", true);
+    request.onload = function () {
+        jsonData = JSON.parse(this.response);
+        console.log("[getAll] :" + JSON.stringify(jsonData));
+        if (request.status >= 200 && request.status < 400) {
+            for (let resource of jsonData) {
+                cards.push(
+                    new Card(
+                        resource.resource_id,
+                        resource.name,
+                        resource.description,
+                        resource.url,
+                        [resource.tag_name]
+                    )
+                );
+            }
+            showAllCards();
+            searchForCards();
+        } else {
+            console.log("error");
+
+        }
+
+    };
+    request.send();
+}
+
+if(queryString !== "" || queryString !== null) {
+    sendPostRequest(queryStringJSON);
+}
+else {
+    sendGetAllResourcesRequest();
+}
 
 function searchForCards() {
     function cardMatches(cardContent) {
         const searchQueryArray = queryString.split(" ");
-        if (queryString.length === 0) {
-            console.log("no query, showing all cards");
-            showAllCards();
-            return true;
-        }
         for (let keyword of searchQueryArray) {
             if (cardContent.toLowerCase().includes(keyword.toLowerCase())) {
                 return true;
@@ -103,16 +134,15 @@ function searchForCards() {
 
     let documentCards = document.querySelectorAll(".card");
     console.log("number of cards:" + documentCards.length)
-    for (var i = 0; i < documentCards.length; i++) {
-        if (cardMatches(documentCards[i].innerText)) {
-            documentCards[i].classList.remove("isHidden");
+    for (let documentCard of documentCards) {
+        if (cardMatches(documentCard.innerText)) {
+            documentCard.classList.remove("isHidden");
         } else {
-            documentCards[i].classList.add("isHidden");
+            documentCard.classList.add("isHidden");
         }
     }
 }
 
-searchForCards();
 
 class filter {
     constructor(name, tags) {
@@ -122,15 +152,15 @@ class filter {
 }
 
 let filters = [
-    new filter("Language", ["c++", "javascript", "python", "java"]),
-    new filter("Operating System", ["linux", "unix", "windows", "macos"]),
+    new filter("Language", ["C++", "JavaScript", "Python", "Java"]),
+    new filter("Operating System", ["Linux", "Cross-Platform", "Win", "Mac"]),
     new filter("Other", [
-        "web programming",
-        "socket",
-        "react",
-        "framework",
-        "coding",
-        "creative",
+        "Image",
+        "Socket",
+        "React",
+        "Framework",
+        "Coding",
+        "Creative",
     ]),
 ];
 
@@ -172,20 +202,44 @@ showAllFilters();
 
 let saveButton = document.getElementById("saveButton");
 saveButton.addEventListener("click", () => {
-    let checkedBoxes = document.querySelectorAll("input[type=checkbox]:checked");
-    let checkedValues = [];
-    for (let checkedBox of checkedBoxes) {
-        checkedValues.push(checkedBox.value);
+
+    let checkboxes = document.querySelectorAll(".checkbox");
+    let isEmpty = true;
+    for (let checkbox of checkboxes) {
+        if (checkbox.checked) {
+            isEmpty = false;
+            console.log("checked: " + checkbox.value);
+            let documentCards = document.querySelectorAll(".card");
+            console.log("number of cards:" + documentCards.length)
+            for (let documentCard of documentCards) {
+                if(documentCard.innerText.toUpperCase().split(" ").map(
+                    (word) => {
+                        return word.toUpperCase() === checkbox.value.toUpperCase();
+                    }
+                ).includes(true)) {
+                    documentCard.classList.remove("isHidden");
+                } else {
+                    documentCard.classList.add("isHidden");
+                }
+            }
+        }
     }
-    queryString = checkedValues.join(" ");
-    searchForCards();
+    if (isEmpty) {
+        let documentCards = document.querySelectorAll(".card");
+        console.log("number of cards:" + documentCards.length)
+        for (let i = 0; i < documentCards.length; i++) {
+            console.log("card " + i + " matches and we show it");
+            documentCards[i].classList.remove("isHidden");
+        }
+    }
+
 });
 
-let typingTimer;
-let typeInterval = 500;
 
-searchBarText.addEventListener("keyup", () => {
-    queryString = searchBarText.value;
-    clearTimeout(typingTimer);
-    typingTimer = setTimeout(searchForCards, typeInterval);
+searchBarText.addEventListener("keypress", function (e)  {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        const query = encodeURIComponent(searchBarText.value);
+        window.location.href = "/search?query=" + query;
+    }
 });
