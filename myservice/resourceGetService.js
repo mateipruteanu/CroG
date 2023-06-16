@@ -9,7 +9,7 @@ const server = http.createServer((req, res) => {
 
 
     if (req.method === 'GET' && req.url === '/api/getResources') {
-        const query = "SELECT * FROM resources";
+        const query = "SELECT * FROM resources JOIN resource_tag ON resources.id = resource_tag.resource_id JOIN tags ON resource_tag.tag_id = tags.id";
         dbConn.query(query, (err, result) => {
             if (err) {
                 console.log(err);
@@ -22,7 +22,6 @@ const server = http.createServer((req, res) => {
         });
     } else {
         res.writeHead(404, {'Content-Type': 'application/json'});
-
     }
 });
 server.listen(3007, () => console.log('Serviciul get ruleaza pe portul 3007'));

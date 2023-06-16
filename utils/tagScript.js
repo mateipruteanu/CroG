@@ -49,7 +49,7 @@ fs.readFile('data.txt', 'utf8', (err, data) => {
     });
 
     resources.forEach(resource => {
-        const query = "SELECT id FROM tags WHERE name = ?";
+        const query = "SELECT id FROM tags WHERE tag_name = ?";
         const params = [resource.tag];
 
         dbConn.query(query, params, function (err, rows, fields) {

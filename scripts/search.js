@@ -44,8 +44,8 @@ function showAllCards() {
         cardElement.classList.add("card");
         cardElement.classList.add("isHidden");
         cardElement.innerHTML = `
-      <a href="${card.url}"  target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: wheat; " ><h2>Title: ${card.title} </h2></a>
-      <p>Desc: ${card.description}</p>
+      <a href="${card.url}"  target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: wheat; " ><h2>${card.title} </h2></a>
+      <p>${card.description}</p>
       <ul>
         ${card.tags.map((tag) => `<li>${tag}</li>`).join("")}
       </ul>
@@ -69,11 +69,10 @@ request.onload = function () {
                     resource.name,
                     resource.description,
                     resource.url,
-                    ["tag1", "tag2"],
+                    [resource.tag_name]
                 )
             );
         }
-        console.log(cards);
         showAllCards();
         searchForCards();
     } else {
@@ -164,6 +163,7 @@ function showAllFilters() {
     let saveButton = document.createElement("button");
     saveButton.id = "saveButton";
     saveButton.innerHTML = "Save";
+    saveButton.classList.add("saveButton");
     filterDiv.appendChild(saveButton);
 }
 
