@@ -48,13 +48,16 @@ const server = http.createServer(function (req, res) {
 
     }
 
-    if (req.method === 'GET' && req.url.includes('/api/deleteResource')) {
+    if (req.method === 'POST' && req.url.includes('/api/deleteResource')) {
         let resourceId='';
-        resourceId=req.url.split('?')[1].split('=')[1].trim();
-        console.log("[api/deleteResource] Received: ", resourceId);
+        req.on('data', (chunk) => {
+            resourceId += chunk;
+        });
+        req.on('end', () => {
+            parsedId=JSON.parse(resourceId);
             console.log("[api/deleteResource] Attempting delete...");
             const query = "DELETE FROM resources WHERE id = ?";
-            const params = [resourceId];
+            const params = [parsedId.resourceId];
             try {
                 dbConn.query(query, params, function (err, rows, fields) {
                     if (err) throw err;
@@ -67,6 +70,7 @@ const server = http.createServer(function (req, res) {
                 res.writehead(200, {'Content-Type': 'application/json'});
                 res.end(JSON.stringify({deleted: false}));
             }
+        });
     }
 });
 
