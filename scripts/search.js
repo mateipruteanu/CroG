@@ -54,6 +54,9 @@ function showAllCards() {
     }
 }
 
+
+
+// Getting resulted cards from server
 let jsonData;
 let request = new XMLHttpRequest();
 
@@ -62,6 +65,7 @@ request.onload = function () {
     jsonData = JSON.parse(this.response);
     console.log("data :" + JSON.stringify(jsonData));
     if (request.status >= 200 && request.status < 400) {
+        console.log("jsonData: " + JSON.stringify(jsonData));
         for (let resource of jsonData) {
             cards.push(
                 new Card(
@@ -79,7 +83,6 @@ request.onload = function () {
         console.log("error");
 
     }
-
 };
 request.send();
 console.log("data :" + JSON.stringify(jsonData));
