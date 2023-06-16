@@ -130,6 +130,18 @@
 
 }
 
+card_title{
+    font-size: 40px;
+}
+
+.res_id{
+    font-size: 15px;
+}
+
+.desc{
+    font-size: 20px;
+}
+
 .saveButton {
     transition: .5s;
     outline: #264653;

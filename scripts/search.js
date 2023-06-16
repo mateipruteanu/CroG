@@ -44,8 +44,9 @@ function showAllCards() {
         cardElement.classList.add("card");
         cardElement.classList.add("isHidden");
         cardElement.innerHTML = `
-      <a href="${card.url}"  target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: wheat; " ><h2>${card.title} </h2></a>
-      <p>${card.description}</p>
+      <a href="${card.url}"  target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: wheat; " ><h2 class="card_title">${card.title} </h2></a>
+      <p class="res_id">#${card.id}</p>
+      <p class="desc">${card.description}</p>
       <ul>
         ${card.tags.map((tag) => `<li>${tag}</li>`).join("")}
       </ul>
@@ -54,9 +55,6 @@ function showAllCards() {
     }
 }
 
-
-
-// Getting resulted cards from server
 let jsonData;
 let request = new XMLHttpRequest();
 
@@ -65,11 +63,10 @@ request.onload = function () {
     jsonData = JSON.parse(this.response);
     console.log("data :" + JSON.stringify(jsonData));
     if (request.status >= 200 && request.status < 400) {
-        console.log("jsonData: " + JSON.stringify(jsonData));
         for (let resource of jsonData) {
             cards.push(
                 new Card(
-                    resource.id,
+                    resource.resource_id,
                     resource.name,
                     resource.description,
                     resource.url,
@@ -83,6 +80,7 @@ request.onload = function () {
         console.log("error");
 
     }
+
 };
 request.send();
 console.log("data :" + JSON.stringify(jsonData));
