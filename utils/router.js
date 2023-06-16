@@ -79,7 +79,8 @@ function route(request, response, path, method) {
                 }
             }, 100);
         }
-    } else if (path === "/login") {
+    }
+    else if (path === "/login") {
         const cookie = request.headers.cookie;
         if (cookie) {
         //     redirecting to account page if already logged in
@@ -379,6 +380,30 @@ function route(request, response, path, method) {
                 "Location": "/account",
             });
             response.end();
+        });
+    }
+    else if(path==="/deleteresource"){
+    console.log("[/deleteresource] request received");
+
+        let options = {
+            host: "localhost",
+            port: 3006,
+            path: "/api/deleteResource?resourceId=",
+            method: "GET",
+        };
+        const requestToApi = http.request(options, function (responseFromApi) {
+            let responseData = "";
+            responseFromApi.on("data", function (data) {
+                responseData += data;
+            });
+            responseFromApi.on("end", function () {
+                const  responseBody = JSON.parse(responseData);
+                console.log("[/deleteresource] Response from API: " + responseBody);
+                response.writeHead(302, {
+                    Location: "/account",
+                });
+                response.end();
+            });
         });
     }
   }
