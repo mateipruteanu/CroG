@@ -35,7 +35,7 @@
     <div class="contentDiv">
         <div class="accountDiv">
             <h1>Account Information</h1>
-            <form class="accountForm">
+            <form class="accountForm" method="POST">
                 <input class="formRow" type="text" id="name" name="name" placeholder="Name" required>
 
                 <input class="formRow" type="email" id="email" name="email" placeholder="Email" required>
@@ -45,7 +45,7 @@
                 <input class="formRow" type="password" id="confirm-password" name="confirm-password"
                        placeholder="Confirm password" required>
 
-                <input class="topButton" type="submit" value="Update">
+                <input class="topButton" type="submit" id="updateButton" value="Update">
             </form>
 
             <form class="resourceForm">

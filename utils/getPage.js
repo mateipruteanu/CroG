@@ -22,7 +22,7 @@ function loginPage(request, response) {
 
 function accountPage(request, response) {
     let cookies = request.headers.cookie;
-    if (cookies === null || cookies === "") {
+    if (cookies === undefined || cookies === "") {
         response.writeHead(302, {
             Location: "/login",
         });
@@ -62,7 +62,43 @@ function accountPage(request, response) {
     }
 }
 
+function addResourcePage(request, response) {
+    let cookies = request.headers.cookie;
+    console.log("[router/addResource] Cookies: " + cookies);
+    if (cookies === undefined || cookies === "") {
+        response.writeHead(302, {
+            Location: "/login",
+        });
+        response.end();
+    }
+    else {
+        fs.readFile("./pages/addresource.html", function (error, content) {
+            response.writeHead(200, {"Content-Type": "text/html"});
+            response.end(content, "utf-8");
+        });
+    }
+}
+
+function deleteResourcePage(request, response) {
+    let cookies = request.headers.cookie;
+    console.log("[router/addResource] Cookies: " + cookies);
+    if (cookies === undefined || cookies === "") {
+        response.writeHead(302, {
+            Location: "/login",
+        });
+        response.end();
+    }
+    else {
+        fs.readFile("./pages/deleteresource.html", function (error, content) {
+            response.writeHead(200, {"Content-Type": "text/html"});
+            response.end(content, "utf-8");
+        });
+    }
+}
+
 module.exports = {
     loginPage: loginPage,
     accountPage: accountPage,
+    addResourcePage: addResourcePage,
+    deleteResourcePage: deleteResourcePage
 }

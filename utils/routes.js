@@ -1,3 +1,3 @@
-const pages = ['/', '/addresource', '/deleteresource', '/login', '/signup', '/auth', '/search'];
+const pages = ['/', '/login', '/signup', '/auth', '/search'];
 
 module.exports = pages;

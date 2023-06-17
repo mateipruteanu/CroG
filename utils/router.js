@@ -18,6 +18,10 @@ function route(request, response, path, method) {
             getPage.accountPage(request, response);
         } else if (path === "/login") {
             getPage.loginPage(request, response);
+        } else if (path === "/addresource") {
+            getPage.addResourcePage(request, response);
+        } else if (path === "/deleteresource") {
+            getPage.deleteResourcePage(request, response);
         } else if (routes.includes(path)) {
             fs.readFile("./pages" + path + ".html", function (error, content) {
                 response.writeHead(200, {"Content-Type": "text/html"});
@@ -57,7 +61,10 @@ function route(request, response, path, method) {
             buttonFunctionality.addResource(request, response);
         } else if (path === "/deleteresource") {
             buttonFunctionality.deleteResource(request, response);
+        } else if(path === "/account") {
+            buttonFunctionality.updateAccount(request, response);
         }
+
     }
 }
 

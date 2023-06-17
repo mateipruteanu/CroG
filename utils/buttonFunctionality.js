@@ -382,11 +382,79 @@ function deleteResource(request, response) {
     });
 }
 
+function updateAccount(request, response) {
+    console.log("[/updateaccount] request received");
+    let body = "";
+    request.on("data", function (data) {
+        body += data;
+    });
+    request.on("end", function () {
+        let parsedData = queryString.parse(body);
+
+        let sessionId = request.headers.cookie.split("=")[1];
+
+        let userObject = {
+            "username": parsedData.name,
+            "password": parsedData.password,
+            "email": parsedData.email,
+            "sessionId": sessionId
+        }
+
+        let userJson = JSON.stringify(userObject);
+
+        console.log("[/updateaccount] parsedData", parsedData);
+        const options = {
+            host: "localhost",
+            port: 3005,
+            path: "/api/updateAccount",
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        const requestToApi = http.request(options, function (responseFromApi) {
+            let responseData = "";
+
+            responseFromApi.on("data", function (data) {
+                responseData += data;
+            });
+
+            responseFromApi.on("end", function () {
+                const responseBody = JSON.parse(responseData);
+                console.log("[/updateaccount] responseBody from API", responseBody);
+                if (responseBody.updated) {
+                        response.writeHead(302, {
+                            Location: "/account"
+                        });
+                    console.log("[/updateaccount] updated account successful\n");
+                } else {
+                    console.log("[/updateaccount] update account failed\n");
+                    response.writeHead(302, {
+                        Location: "/account"
+                    });
+                }
+            });
+        });
+        requestToApi.on("error", function (error) {
+            console.error(error);
+        });
+        console.log("[/updateaccount] userJson", userJson);
+        requestToApi.write(userJson);
+        requestToApi.end();
+
+        response.writeHead(302, {
+            "Content-Type": "text/html", Location: "/account",
+        });
+        response.end();
+    });
+}
+
 
 module.exports = {
     login: login,
     logout: logout,
     signup: signup,
     addResource: addResource,
-    deleteResource: deleteResource
+    deleteResource: deleteResource,
+    updateAccount: updateAccount
 }

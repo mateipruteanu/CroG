@@ -130,7 +130,36 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, {'Content-Type': 'application/json'});
             res.end(JSON.stringify({exists: true}));
         }
+    } else if (req.method === 'POST' && req.url.includes('/api/updateAccount')) {
+        let body = '';
+        req.on('data', (chunk) => {
+            body += chunk;
+        });
 
+        req.on('end', () => {
+            if (body === '') {
+                res.writeHead(400);
+                res.end('[authAPI/updateAccount] No parameters sent');
+            }
+            const data = JSON.parse(body);
+            const username = data.username;
+            const password = data.password;
+            const email = data.email;
+            const sessionId = data.sessionId;
+            console.log("[authAPI/updateAccount] sessionId: " + sessionId + " Username: " + username + " Password: " + password + " Email: " + email)
+            const query = "UPDATE users SET username = ?, password = ?, email = ? WHERE session_id = ?";
+            const params = [username, password, email, sessionId];
+            dbConn.query(query, params, function (err, rows, fields) {
+                if (err) {
+                    res.writeHead(500);
+                    res.end('[authAPI/updateAccount] Error updating user ' + username + ' in database');
+                    throw err;
+                }
+                console.log("[authAPI/updateAccount] Updated user " + username + " in database");
+            });
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify({updated: true}));
+        });
     } else {
         res.writeHead(404);
         res.end();
