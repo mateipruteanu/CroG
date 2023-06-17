@@ -23,10 +23,13 @@ const server = http.createServer((req, res) => {
             }
             const data = JSON.parse(body);
             const username = data.username;
-            const password = data.password;
+            const saltedPassword = data.password + username;
+
+            const hashedPassword = crypto.createHash('sha256').update(saltedPassword).digest('hex');
+            console.log("[authAPI/login] Username: " + username + " Password: " + saltedPassword + " hashedPassword: " + hashedPassword);
 
 
-            dbConn.query("SELECT * FROM users WHERE username = ? AND password = ?", [username, password], function (err, rows, fields) {
+            dbConn.query("SELECT * FROM users WHERE username = ? AND password = ?", [username, hashedPassword], function (err, rows, fields) {
                 if (err) throw err;
                 console.log("[authAPI/login] Found: ", rows);
                 if (rows.length > 0) {
@@ -68,11 +71,14 @@ const server = http.createServer((req, res) => {
             }
             const data = JSON.parse(body);
             const username = data.username;
-            const password = data.password;
+            const saltedPassword = data.password + username;
             const email = data.email;
-            console.log("[authAPI/signUp] Username: " + username + " Password: " + password + " Email: " + email)
+
+            const hashedPassword = crypto.createHash('sha256').update(saltedPassword).digest('hex');
+            console.log("[authAPI/signUp] Username: " + username + " Password: " + saltedPassword + " hashedPassword: " + hashedPassword);
+
             const query = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
-            const params = [username, password, email];
+            const params = [username, hashedPassword, email];
             dbConn.query(query, params, function (err, rows, fields) {
                 if (err) throw err;
                 console.log("[authAPI/signUp] Inserted new user " + username + " into database");
@@ -143,12 +149,16 @@ const server = http.createServer((req, res) => {
             }
             const data = JSON.parse(body);
             const username = data.username;
-            const password = data.password;
             const email = data.email;
             const sessionId = data.sessionId;
-            console.log("[authAPI/updateAccount] sessionId: " + sessionId + " Username: " + username + " Password: " + password + " Email: " + email)
+            const saltedPassword = data.password + username;
+
+            const hashedPassword = crypto.createHash('sha256').update(saltedPassword).digest('hex');
+            console.log("[authAPI/updateAccount] Username: " + username + " Password: " + saltedPassword + "hashedPassword: " + hashedPassword);
+
+
             const query = "UPDATE users SET username = ?, password = ?, email = ? WHERE session_id = ?";
-            const params = [username, password, email, sessionId];
+            const params = [username, hashedPassword, email, sessionId];
             dbConn.query(query, params, function (err, rows, fields) {
                 if (err) {
                     res.writeHead(500);
