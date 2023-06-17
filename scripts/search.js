@@ -135,7 +135,7 @@ class filter {
     }
 }
 
-let filters = [new filter("Language", ["C++", "JavaScript", "Python", "Java"]), new filter("Operating System", ["Linux", "Cross-Platform", "Win", "Mac"]), new filter("Other", ["Image", "Socket", "React", "Framework", "Coding", "Creative",]),];
+let filters = [new filter("Language", ["C++", "JavaScript", "Python", "Java"]), new filter("Operating System", ["Linux", "Cross-Platform", "Win", "Mac"]), new filter("Type", ["Videos", "Books", "Blogs • Websites", "Courses", "Hardware"]), new filter("Other", ["Graphics", "3D", "React", "Framework", "Coding", "Creative",]) ];
 
 let filterDiv = document.getElementById("filtersDiv");
 filterDiv.innerHTML = "";
@@ -181,6 +181,7 @@ saveButton.addEventListener("click", () => {
             console.log("checked: " + checkbox.value);
             let documentCards = document.querySelectorAll(".card");
             console.log("number of cards:" + documentCards.length)
+
             for (let documentCard of documentCards) {
                 if (documentCard.innerText.toUpperCase().split(" ").map((word) => {
                     return word.toUpperCase() === checkbox.value.toUpperCase();
