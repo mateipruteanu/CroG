@@ -13,4 +13,6 @@ let server = http.createServer(function (request, response) {
 
 });
 
-server.listen(3000);
+server.listen(3000, () => {
+    console.log("Main server running at http://localhost:3006/");
+});

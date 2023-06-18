@@ -177,5 +177,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(3005, () => {
-    console.log('Microserviciul de autentificare a pornit pe portul 3005');
+    console.log('Authentication microservice running at http://localhost:3005/');
 });

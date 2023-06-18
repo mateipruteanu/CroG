@@ -1,6 +1,8 @@
 const http = require('http');
 const dbConn = require('../utils/databaseConnection');
-const {queryDictionary} = require('../utils/queryDictionary');
+const fs = require("fs");
+const queryDictionaryJson = fs.readFileSync('./utils/queryDictionary.json');
+const queryDictionary = JSON.parse(queryDictionaryJson.toString());
 
 const server = http.createServer((req, res) => {
 
@@ -31,7 +33,7 @@ const server = http.createServer((req, res) => {
             const searchQueryArray = queryString.split(" ");
             let importantWordsArray = [];
             for (let word of searchQueryArray) {
-                if (queryDictionary.includes(word)) {
+                if (queryDictionary.words.includes(word)) {
                     importantWordsArray.push(word);
                 }
             }
@@ -59,6 +61,7 @@ const server = http.createServer((req, res) => {
                     res.writeHead(500, {'Content-Type': 'application/json'});
                     res.end(JSON.stringify({message: "Internal server error"}));
                 } else {
+
                     res.writeHead(200, {'Content-Type': 'application/json'});
                     res.end(JSON.stringify(result));
                 }
@@ -70,4 +73,4 @@ const server = http.createServer((req, res) => {
         res.writeHead(404, {'Content-Type': 'application/json'});
     }
 });
-server.listen(3007, () => console.log('Serviciul get ruleaza pe portul 3007'));
+server.listen(3007, () => console.log('Resource getter microservice running at http://localhost:3007/'));
