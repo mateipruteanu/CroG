@@ -4,9 +4,11 @@
 - Backend built from scratch with `Vanilla NodeJS` with a `microservice architecture` _(no frameworks were allowed)_
 
   
-### For `app features` click [here](#features) and for the `demo` click [here](#demo) or go to the [video presentation](https://youtu.be/XvJXHpOBcYQ) :)
+### Click here to go to the [app features](#features) and here for the [demo](#demo) or go to the [video presentation](https://youtu.be/XvJXHpOBcYQ) :)
 
+Project requirements can be found at this [Pastebin](https://pastebin.com/F5GyqhHJ).
 
+Resources used to populate DB are taken from [this Github Page](https://github.com/terkelg/awesome-creative-coding)
 
 ## My Responsabilities
 - Worked on the Frontend for the Search page & on the CSS for the project
