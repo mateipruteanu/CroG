@@ -12,7 +12,7 @@ Resources used to populate DB are taken from [this Github Page](https://github.c
 
 ## My Responsabilities
 - Worked on the Frontend for the Search page & on the CSS for the project
-- Made the Authentication part of the app (microservice and handling of forms from frontend)
+- Made the Authentication part of the app (microservice and handling of forms from frontend, session management)
 - Implemented the update account feature
 
 ## Features
