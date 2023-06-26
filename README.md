@@ -11,7 +11,7 @@ Project requirements can be found at this [Pastebin](https://pastebin.com/F5Gyqh
 Resources used to populate DB are taken from [this Github Page](https://github.com/terkelg/awesome-creative-coding)
 
 ## My Responsabilities
-- Worked on the Frontend for the Search page & on the CSS for the project
+- Worked on the Frontend for the Search page (design & filtering) & on the CSS for the project
 - Made the Authentication part of the app (microservice and handling of forms from frontend, session management)
 - Implemented the update account feature
 
